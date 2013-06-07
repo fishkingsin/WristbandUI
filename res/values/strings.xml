@@ -69,7 +69,7 @@
     <string name="facebook_activity_name">Facebook</string>
     <string name="app_id">249937528477713</string>
     <string name="twitter_activity_name">Twitter</string>
-    <string name="pref_name">Preference</string>
+    <string name="pref_name">preferences</string>
     <string name="key_target">Target</string>
     <string name="key_targetSteps">TargetSteps</string>
     <string name="key_targetCalories">TargetCalories</string>
