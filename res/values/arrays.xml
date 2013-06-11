@@ -21,6 +21,25 @@
         <item>Beta Option 02</item>
         <item>Charlie Option 03</item>  
     </string-array>
+    <!--  user gender --> 
+    <string-array name="pref_user_gender_entries">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string-array name="pref_user_gender_entryvalues">
+        <item>Male</item>
+        <item>Female</item>  
+    </string-array>
+    
+    <string-array name="pref_unit_entries">
+        <item>Metric</item>
+        <item>Imperial</item>
+    </string-array>
+    <string-array name="pref_unit_entryvalues">
+        <item>Metric</item>
+        <item>Imperial</item>  
+    </string-array>
+    
     <!-- Used in app/menu examples -->
     <string-array name="entryvalues_list_preference">
         <item>alpha</item>

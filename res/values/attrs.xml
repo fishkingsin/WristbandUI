@@ -17,6 +17,11 @@
 	  <attr name="offset" format="dimension" />
 	</declare-styleable>
 	
+	<declare-styleable name="RelativeLayoutButton">
+	    <attr name="titleText" format="string" localization="suggested" />
+        <attr name="valueColor" format="color" />
+	</declare-styleable>
+	
     <style name="ProgressHUD" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>

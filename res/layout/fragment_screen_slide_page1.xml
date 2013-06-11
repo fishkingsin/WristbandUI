@@ -189,6 +189,18 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
+
+            <Button
+                android:id="@+id/button_instruction_close"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/x"
+                 />
+
         </RelativeLayout>
     </FrameLayout>
 

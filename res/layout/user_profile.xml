@@ -2,8 +2,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout1"
+    <!-- <RelativeLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -43,17 +43,18 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:background="@drawable/btn_done_selector" />
-    </RelativeLayout>
+    </RelativeLayout> -->
 
-    <TableLayout
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout1"
+        
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
-        android:background="@drawable/border_grey" >
+        
+        android:orientation="vertical">
 
-        <RelativeLayout
+         <!-- <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
@@ -78,9 +79,9 @@
                 android:text="@string/user"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/default_bg_color" />
-        </RelativeLayout>
+        </RelativeLayout> -->
 
-        <RelativeLayout
+<!--         <RelativeLayout
             android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -239,7 +240,15 @@
                 android:text="50"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/default_bg_color" />
-        </RelativeLayout>
-    </TableLayout>
+        </RelativeLayout>-->
+
+         <LinearLayout
+             android:layout_below="@+id/content"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical" >
+         </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

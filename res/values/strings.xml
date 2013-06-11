@@ -94,4 +94,30 @@
     <string name="take_picture">take_picture</string>
     <string name="choose_from_library">choose_from_library</string>
     
+    <string name="default_user_name">User</string>
+    <string name="default_user_gender">Male</string>
+    <string name="pref_user_profile">User Profile</string>
+    <string name="pref_user_name">User Name</string>
+    
+    <string name="pref_user_name_summary">Please Enter user Name</string>
+    
+    <string name="pref_user_gender_title">Gender</string>
+    <string name="pref_user_gender_summary">Select your gender</string>
+    <string name="pref_user_gender_dialogtitle">Select a gender</string>
+    <string name="pref_date_of_birth_title">Date of birth</string>
+    <string name="pref_user_height_title">Height(cm)</string>
+    <string name="pref_user_weight_title">Width(kg)</string>
+    <string name="pref_unit_title">Unit</string>
+    <string name="pref_unit_dialogtitle">Metric/Imperial</string>
+    <string name="pref_unit_title">Unit</string>
+    <string name="key_user_name">key_user_name</string>
+    <string name="key_profile_pic">key_profile_pic</string>
+    <string name="key_last_sync_time">key_last_sync_time</string>
+    <string name="default_last_sync_time">never</string>
+    
+    <string name="end">End</string>
+    <string name="start">Start</string>
+    <string name="high">High</string>
+    <string name="middle">Middle</string>
+    <string name="low">Low</string>
 </resources>

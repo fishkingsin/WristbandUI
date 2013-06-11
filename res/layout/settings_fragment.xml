@@ -1,120 +1,121 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollView1"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    android:background="@color/default_bg_color">
+    android:layout_height="fill_parent"
+    android:background="@color/default_bg_color" >
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical" >
 
-        <TableLayout
+        <TextView
+            android:id="@+id/textView1"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            android:layout_height="wrap_content"
+            android:text="User"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/btn_user_profile"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_grey_border"
+            android:text="User Profile" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+        
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Activity"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:background="@drawable/border_grey_border">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="Daily Activity Target(mins)"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/default_graey_text_color" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:text="30"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/default_dark_text_color" />
+
+        </RelativeLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_grey_border_top"
+            android:orientation="vertical" >
 
             <Switch
                 android:id="@+id/switch_target"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Target" />
+        </LinearLayout>
 
-            <Button
-                android:id="@+id/Button12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+			<!-- <include
+			    android:id="@+id/Button10"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    layout="@layout/setting_tab"
+			    android:background="@drawable/border_grey_border_middle" /> -->
+			<com.idthk.wristband.ui.RelativeLayoutButton
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:background="@drawable/border_grey_border" />
+<!--             <Button
+            android:id="@+id/Button10"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_grey_border_middle"
+            android:text="Button" 
+            android:textColor="@color/default_graey_text_color"/>
 
-            <Button
-                android:id="@+id/Button11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+        <Button
+            android:id="@+id/Button10"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_grey_border_middle"
+            android:text="Button" 
+            android:textColor="@color/default_graey_text_color"/>
 
-            <Button
-                android:id="@+id/Button10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+        <Button
+            android:id="@+id/Button09"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_grey_border_bottom"
+            android:textColor="@color/default_graey_text_color"
+            android:text="Button" /> -->
 
-            <Button
-                android:id="@+id/Button09"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
-            <Button
-                android:id="@+id/Button08"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/Button07"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/Button06"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/Button05"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/Button04"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/Button03"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/Button02"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/Button01"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button" />
-        </TableLayout>
+        
     </LinearLayout>
 
 </ScrollView>
