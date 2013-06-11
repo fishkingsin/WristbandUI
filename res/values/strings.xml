@@ -90,7 +90,7 @@
     <string name="height">Height(cm)</string>
     <string name="weight">Weight(kg)</string>
     <string name="message">message</string>
-    <string name="ok">ok</string>
+    <string name="ok">OK</string>
     <string name="take_picture">take_picture</string>
     <string name="choose_from_library">choose_from_library</string>
     
@@ -120,4 +120,9 @@
     <string name="high">High</string>
     <string name="middle">Middle</string>
     <string name="low">Low</string>
+    <string name="user">User</string>
+    <string name="your_profile">Your Profile</string>
+    <string name="activity">Activity</string>
+    <string name="Daily_Activity_Target_mins">Daily Activity Target(mins)</string>
+    <string name="Target">Target</string>
 </resources>

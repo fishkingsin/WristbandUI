@@ -126,7 +126,7 @@ public class Utilities {
 	        BitmapFactory.Options o2 = new BitmapFactory.Options();
 	        o2.inSampleSize=scale;
 	        
-	        ContentResolver cr = mContext.getContentResolver();
+//	        ContentResolver cr = mContext.getContentResolver();
 	        float degree = 0;
 	        Bitmap bitmap = null;
 	        try {

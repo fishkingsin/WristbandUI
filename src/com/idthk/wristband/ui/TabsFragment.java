@@ -1,11 +1,11 @@
 package com.idthk.wristband.ui;
 
 import com.idthk.wristband.ui.R;
-import com.idthk.wristband.ui.MainSlideFragment.OnShareButtonClickedListener;
+//import com.idthk.wristband.ui.MainSlideFragment.OnShareButtonClickedListener;
 
 import android.app.Activity;
-import android.app.FragmentTransaction;
-import android.graphics.drawable.Drawable;
+//import android.app.FragmentTransaction;
+//import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,13 +13,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
+//import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
-import android.widget.TextView;
+//import android.widget.TextView;
 
 public class TabsFragment extends Fragment implements OnTabChangeListener {
 
@@ -33,7 +33,7 @@ public class TabsFragment extends Fragment implements OnTabChangeListener {
 	private View mRoot;
 	private TabHost mTabHost;
 	private int mCurrentTab;
-	private int mPreviousTab;
+//	private int mPreviousTab;
 	OnFragmentTabbedListener mCallback;
     public interface OnFragmentTabbedListener {
         public void onTabbed(String s);
@@ -123,21 +123,21 @@ public class TabsFragment extends Fragment implements OnTabChangeListener {
 		// }
 		if (TAB_SCROLL.equals(tabId)) {
 			updateTabMain(tabId, R.id.tab_1);
-			mPreviousTab = mCurrentTab;
+//			mPreviousTab = mCurrentTab;
 			
 			mCurrentTab = 0;
 			return;
 		}
 		if (TAB_FRAGMENT_TAB.equals(tabId)) {
 			updateTabFragTab(tabId, R.id.tab_2);
-			mPreviousTab = mCurrentTab;
+//			mPreviousTab = mCurrentTab;
 			mCurrentTab = 1;
 			return;
 		}
 		if (TAB_SETTINGS.equals(tabId)) {
 			mCallback.onTabbed(tabId);
 			updateTabSetting(tabId, R.id.tab_3);
-			mPreviousTab = mCurrentTab;
+//			mPreviousTab = mCurrentTab;
 			mCurrentTab = 2;
 			return;
 		}

@@ -1,17 +1,17 @@
 package com.idthk.wristband.ui.numberpickerpreference;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.inputmethodservice.KeyboardView;
+//import android.inputmethodservice.KeyboardView;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.KeyEvent;
+//import android.view.KeyEvent;
 import android.view.View;
-import android.widget.EditText;
+//import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
+//import android.widget.TextView.OnEditorActionListener;
 
 public class NumberPickerPreference extends DialogPreference implements NumberPicker.OnValueChangeListener
     {
@@ -156,6 +156,6 @@ public class NumberPickerPreference extends DialogPreference implements NumberPi
                 persistInt(newVal);
                 notifyChanged();
             }
-            callChangeListener(new Integer(newVal));    
+            callChangeListener(Integer.valueOf(newVal));    
         }
     }

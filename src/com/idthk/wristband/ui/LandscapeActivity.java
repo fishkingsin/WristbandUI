@@ -1,14 +1,14 @@
 package com.idthk.wristband.ui;
 
 import android.app.Activity;
-import android.content.Intent;
+//import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.OrientationEventListener;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 public class LandscapeActivity extends Activity {
 	static final String TAG = "LandscapeActivity";

@@ -1,26 +1,26 @@
 package com.idthk.wristband.ui;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 import com.idthk.wristband.ui.R;
 
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.Activity;
-import android.app.FragmentTransaction;
-import android.content.Context;
+//import android.app.ActionBar;
+//import android.app.ActionBar.Tab;
+//import android.app.Activity;
+//import android.app.FragmentTransaction;
+//import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
+//import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+//import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
+//import android.view.View;
+//import android.widget.Toast;
 
 public class InstructionActivity extends FragmentActivity implements ScreenSlidePageFragment.OnSkipClickedListener{
 	static final String TAG = "InstructionActivity";

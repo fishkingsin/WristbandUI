@@ -6,22 +6,22 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="User"
+            android:text="@string/user"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
             android:id="@+id/btn_user_profile"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_grey_border"
-            android:text="User Profile" />
+            android:background="@drawable/round_button_selector"
+            android:text="@string/your_profile" />
 
         <Space
             android:layout_width="match_parent"
@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Activity"
+            android:text="@string/activity"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RelativeLayout
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:text="Daily Activity Target(mins)"
+                android:text="@string/Daily_Activity_Target_mins"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/default_graey_text_color" />
 
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:text="30"
+                android:text="0"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/default_dark_text_color" />
 
@@ -74,7 +74,7 @@
                 android:id="@+id/switch_target"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Target" />
+                android:text="@string/Target" />
         </LinearLayout>
 
 			<!-- <include
@@ -86,7 +86,7 @@
 			<com.idthk.wristband.ui.RelativeLayoutButton
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:background="@drawable/border_grey_border" />
+			    android:background="@drawable/border_grey_border_middle" />
 <!--             <Button
             android:id="@+id/Button10"
             android:layout_width="fill_parent"

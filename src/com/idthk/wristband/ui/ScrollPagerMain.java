@@ -5,32 +5,32 @@ import com.idthk.wristband.ui.R;
 import com.tomoki.iwai.ScrollPagerHorizontal;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+//import android.content.Intent;
+//import android.content.SharedPreferences;
+//import android.graphics.Bitmap;
+//import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+//import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.FrameLayout;
+//import android.widget.Button;
+//import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.Scroller;
-import android.widget.Toast;
-import android.view.GestureDetector;
-import android.view.GestureDetector.SimpleOnGestureListener;
+//import android.widget.ImageView;
+//import android.widget.LinearLayout;
+//import android.widget.ScrollView;
+//import android.widget.Scroller;
+//import android.widget.Toast;
+//import android.view.GestureDetector;
+//import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.OvershootInterpolator;
+//import android.view.animation.Animation;
+//import android.view.animation.AnimationUtils;
+//import android.view.animation.OvershootInterpolator;
 
 public class ScrollPagerMain extends Fragment implements OnTouchListener{
 
@@ -40,9 +40,9 @@ public class ScrollPagerMain extends Fragment implements OnTouchListener{
     public interface ScrollPagerMainCallback {
         public void onScrollPagerMainCallback();
     }
-	private GestureDetector gesturedetector = null;
+//	private GestureDetector gesturedetector = null;
 
-	private Intent i;
+//	private Intent i;
 	static final String TAG = "ScrollPager";
 	private HorizontalScrollView scrollView;
     private ViewGroup contentView;

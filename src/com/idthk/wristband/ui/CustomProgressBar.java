@@ -46,15 +46,15 @@ import android.widget.ProgressBar;
  */
 public class CustomProgressBar extends ProgressBar {
   private Drawable m_indicator;
-  private int m_offset = 5;
+//  private int m_offset = 5;
   private TextPaint m_textPaint;
-  private Formatter m_formatter;
+//  private Formatter m_formatter;
   private String text = "";
   private int textColor = Color.BLACK;
   private float textSize = 48;
 private int m_indicator_x = 100;
 private int m_target=0;
-private static final String TAG = "CustomProgressBar";
+//private static final String TAG = "CustomProgressBar";
   private static final int progressBarHeight = 50;
   public CustomProgressBar(Context context) {
     this(context, null);
@@ -108,7 +108,7 @@ private static final String TAG = "CustomProgressBar";
       
       m_indicator = a.getDrawable(R.styleable.CustomProgressBar_progressIndicator);
       
-      m_offset = (int) a.getDimension(R.styleable.CustomProgressBar_offset, 0);
+//      m_offset = (int) a.getDimension(R.styleable.CustomProgressBar_offset, 0);
       
       a.recycle();
       
@@ -142,18 +142,18 @@ private static final String TAG = "CustomProgressBar";
    * 
    * @param formatter
    */
-  public void setTextFormatter(Formatter formatter) {
-    m_formatter = formatter;
-  }
+//  public void setTextFormatter(Formatter formatter) {
+//    m_formatter = formatter;
+//  }
 
   /**
    * The additional offset is for tweaking the position of the indicator.
    * 
    * @param offset
    */
-  public void setOffset(int offset) {
-    m_offset = offset;
-  }
+//  public void setOffset(int offset) {
+//    m_offset = offset;
+//  }
   
   /**
    * Set the text color
@@ -220,16 +220,16 @@ private static final String TAG = "CustomProgressBar";
     }
   }
   
-  private int getIndicatorWidth() {
-    if (m_indicator == null) {
-      return 0;
-    }
-    
-    Rect r = m_indicator.copyBounds();
-    int width = r.width();
-    
-    return width;
-  }
+//  private int getIndicatorWidth() {
+//    if (m_indicator == null) {
+//      return 0;
+//    }
+//    
+//    Rect r = m_indicator.copyBounds();
+//    int width = r.width();
+//    
+//    return width;
+//  }
   
   private int getIndicatorHeight() {
     if (m_indicator == null) {
@@ -342,11 +342,11 @@ private static final String TAG = "CustomProgressBar";
 	  invalidate();
   }
   
-  private float getScale(int progress) {
-    float scale = getMax() > 0 ? (float) progress / (float) getMax() : 0;
-    
-    return scale;
-  }
+//  private float getScale(int progress) {
+//    float scale = getMax() > 0 ? (float) progress / (float) getMax() : 0;
+//    
+//    return scale;
+//  }
 
   /**
    * Instead of using clipping regions to uncover the progress bar as the
@@ -361,12 +361,12 @@ private static final String TAG = "CustomProgressBar";
     	
       LayerDrawable d = (LayerDrawable) progressDrawable;
       
-      final float scale = getScale(getProgress());
+//      final float scale = getScale(getProgress());
       
       // get the progress bar and update it's size
       Drawable progressBar = d.findDrawableByLayerId(R.id.progress_shape);
       
-      final int width = d.getBounds().right - d.getBounds().left;
+//      final int width = d.getBounds().right - d.getBounds().left;
       
       if (progressBar != null) {
 //    	  float hsv[];
@@ -420,33 +420,33 @@ private static final String TAG = "CustomProgressBar";
 //      }
     }
   }
-  private static int hslToRgb(float[] hsl) {
-	  float h = hsl[0];
-	  float s = hsl[1];
-	  float l = hsl[2];
-	  
-	  float c = (1 - Math.abs(2.f * l - 1.f)) * s;
-	  float h_ = h / 60.f;
-	  float h_mod2 = h_;
-	  if (h_mod2 >= 4.f) h_mod2 -= 4.f;
-	  else if (h_mod2 >= 2.f) h_mod2 -= 2.f;
-	  
-	  float x = c * (1 - Math.abs(h_mod2 - 1));
-	  float r_, g_, b_;
-	  if (h_ < 1)      { r_ = c; g_ = x; b_ = 0; }
-	  else if (h_ < 2) { r_ = x; g_ = c; b_ = 0; }
-	  else if (h_ < 3) { r_ = 0; g_ = c; b_ = x; }
-	  else if (h_ < 4) { r_ = 0; g_ = x; b_ = c; }
-	  else if (h_ < 5) { r_ = x; g_ = 0; b_ = c; }
-	  else             { r_ = c; g_ = 0; b_ = x; }
-	  
-	  float m = l - (0.5f * c); 
-	  int r = (int)((r_ + m) * (255.f) + 0.5f);
-	  int g = (int)((g_ + m) * (255.f) + 0.5f);
-	  int b = (int)((b_ + m) * (255.f) + 0.5f);
-	  
-	  return  r << 16 | g << 8 | b;
-	 }
+//  private static int hslToRgb(float[] hsl) {
+//	  float h = hsl[0];
+//	  float s = hsl[1];
+//	  float l = hsl[2];
+//	  
+//	  float c = (1 - Math.abs(2.f * l - 1.f)) * s;
+//	  float h_ = h / 60.f;
+//	  float h_mod2 = h_;
+//	  if (h_mod2 >= 4.f) h_mod2 -= 4.f;
+//	  else if (h_mod2 >= 2.f) h_mod2 -= 2.f;
+//	  
+//	  float x = c * (1 - Math.abs(h_mod2 - 1));
+//	  float r_, g_, b_;
+//	  if (h_ < 1)      { r_ = c; g_ = x; b_ = 0; }
+//	  else if (h_ < 2) { r_ = x; g_ = c; b_ = 0; }
+//	  else if (h_ < 3) { r_ = 0; g_ = c; b_ = x; }
+//	  else if (h_ < 4) { r_ = 0; g_ = x; b_ = c; }
+//	  else if (h_ < 5) { r_ = x; g_ = 0; b_ = c; }
+//	  else             { r_ = c; g_ = 0; b_ = x; }
+//	  
+//	  float m = l - (0.5f * c); 
+//	  int r = (int)((r_ + m) * (255.f) + 0.5f);
+//	  int g = (int)((g_ + m) * (255.f) + 0.5f);
+//	  int b = (int)((b_ + m) * (255.f) + 0.5f);
+//	  
+//	  return  r << 16 | g << 8 | b;
+//	 }
   public String getText() {
 	    return text;
 	}

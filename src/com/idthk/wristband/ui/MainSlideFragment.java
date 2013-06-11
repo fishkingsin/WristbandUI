@@ -17,47 +17,47 @@
 package com.idthk.wristband.ui;
 
 import java.io.File;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+//import java.lang.reflect.Array;
+//import java.util.ArrayList;
+//import java.util.List;
 import java.util.Random;
-import java.util.prefs.PreferenceChangeEvent;
-import java.util.prefs.PreferenceChangeListener;
-import java.util.prefs.Preferences;
+//import java.util.prefs.PreferenceChangeEvent;
+//import java.util.prefs.PreferenceChangeListener;
+//import java.util.prefs.Preferences;
 
-import org.xmlpull.v1.XmlPullParser;
+//import org.xmlpull.v1.XmlPullParser;
 
 import com.idthk.wristband.ui.R;
-import com.idthk.wristband.ui.ScrollPagerMain.ScrollPagerMainCallback;
-import com.tomoki.iwai.ScrollPagerHorizontal;
-import com.tomoki.iwai.ScrollPagerVertical;
+//import com.idthk.wristband.ui.ScrollPagerMain.ScrollPagerMainCallback;
+//import com.tomoki.iwai.ScrollPagerHorizontal;
+//import com.tomoki.iwai.ScrollPagerVertical;
 
 import android.support.v4.app.Fragment;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.Rect;
-import android.graphics.drawable.ClipDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RoundRectShape;
-import android.os.AsyncTask;
+//import android.graphics.BitmapFactory;
+//import android.graphics.Color;
+//import android.graphics.Rect;
+//import android.graphics.drawable.ClipDrawable;
+//import android.graphics.drawable.Drawable;
+//import android.graphics.drawable.ShapeDrawable;
+//import android.graphics.drawable.shapes.RoundRectShape;
+//import android.os.AsyncTask;
 //import android.app.Fragment;
 import android.os.Bundle;
-import android.preference.Preference;
+//import android.preference.Preference;
 import android.preference.PreferenceManager;
-import android.util.AttributeSet;
+//import android.util.AttributeSet;
 import android.util.Log;
-import android.util.Xml;
-import android.view.Gravity;
+//import android.util.Xml;
+//import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+//import android.widget.FrameLayout;
+//import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ImageView;
@@ -66,7 +66,7 @@ import com.jjoe64.graphview.BarGraphView;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
 import com.jjoe64.graphview.GraphViewSeries;
-import com.jjoe64.graphview.LineGraphView;
+//import com.jjoe64.graphview.LineGraphView;
 
 /**
  * A fragment representing a single step in a wizard. The fragment shows a dummy
@@ -372,35 +372,35 @@ public class MainSlideFragment extends Fragment implements
 
 	}
 
-	private class UpdateBarTask extends AsyncTask<Void, Integer, Void> {
-
-		@Override
-		protected Void doInBackground(Void... params) {
-			int max = 104;
-			for (int i = 0; i <= max; i++) {
-				try {
-					// update every second
-					Thread.sleep(100);
-					if (i == max - 1) {
-						i = 0;
-					}
-					//
-
-				} catch (InterruptedException e) {
-
-				}
-
-				publishProgress(i);
-			}
-
-			return null;
-		}
-
-		@Override
-		protected void onProgressUpdate(Integer... values) {
-
-			m_regularProgressBar.setProgressInMins(values[0]);
-			// m_regularProgressBar.setProgress(values[0]);
-		}
-	}
+//	private class UpdateBarTask extends AsyncTask<Void, Integer, Void> {
+//
+//		@Override
+//		protected Void doInBackground(Void... params) {
+//			int max = 104;
+//			for (int i = 0; i <= max; i++) {
+//				try {
+//					// update every second
+//					Thread.sleep(100);
+//					if (i == max - 1) {
+//						i = 0;
+//					}
+//					//
+//
+//				} catch (InterruptedException e) {
+//
+//				}
+//
+//				publishProgress(i);
+//			}
+//
+//			return null;
+//		}
+//
+//		@Override
+//		protected void onProgressUpdate(Integer... values) {
+//
+//			m_regularProgressBar.setProgressInMins(values[0]);
+//			// m_regularProgressBar.setProgress(values[0]);
+//		}
+//	}
 }

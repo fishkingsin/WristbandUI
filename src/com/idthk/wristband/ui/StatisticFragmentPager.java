@@ -11,20 +11,17 @@ package com.idthk.wristband.ui;
 
 
 import com.idthk.wristband.ui.R;
-import com.idthk.wristband.ui.ScrollPagerMain.ScrollPagerMainCallback;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
 
 public class StatisticFragmentPager extends Fragment {
 	private static final int NUMBER_OF_PAGES = 2;

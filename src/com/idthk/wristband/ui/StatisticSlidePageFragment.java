@@ -16,15 +16,10 @@
 
 package com.idthk.wristband.ui;
 import com.idthk.wristband.ui.R;
-import com.idthk.wristband.ui.ScrollPagerMain.ScrollPagerMainCallback;
-import com.tomoki.iwai.ScrollPagerHorizontal;
-import com.tomoki.iwai.ScrollPagerVertical;
 
 
 import android.support.v4.app.Fragment;
 import android.app.Activity;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 //import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,8 +28,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.ImageView;
+
 import android.widget.Button;
 
 /**

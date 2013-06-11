@@ -36,7 +36,7 @@ public class RelativeLayoutButton extends RelativeLayout {
 //				R.styleable.RelativeLayoutButton_valueColor,
 //				android.R.color.holo_blue_light);
 		a.recycle();
-		LayoutInflater inflater = (LayoutInflater) context
+		LayoutInflater inflater = (LayoutIntabflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflater.inflate(R.layout.setting_tab, this, true);
 		

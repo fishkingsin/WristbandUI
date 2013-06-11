@@ -1,8 +1,8 @@
 package com.idthk.wristband.socialnetwork;
 import com.idthk.wristband.ui.R;
-import com.idthk.wristband.ui.R.id;
-import com.idthk.wristband.ui.R.layout;
-import com.idthk.wristband.ui.R.style;
+//import com.idthk.wristband.ui.R.id;
+//import com.idthk.wristband.ui.R.layout;
+//import com.idthk.wristband.ui.R.style;
 
 import android.app.Dialog;
 import android.content.Context;

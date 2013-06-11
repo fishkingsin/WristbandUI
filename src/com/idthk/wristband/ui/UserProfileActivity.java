@@ -1,47 +1,21 @@
 package com.idthk.wristband.ui;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Calendar;
-
 import com.idthk.wristband.ui.R;
-import com.idthk.wristband.ui.FragmentPreferences.PrefsFragment;
-import com.idthk.wristband.ui.numberpickerpreference.NumberPickerPreference;
 
 import android.app.Activity;
-import android.app.AlertDialog;
+
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
-import android.provider.MediaStore.Images.ImageColumns;
-import android.provider.MediaStore.Images.Media;
 import android.util.Log;
-import android.view.Menu;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 public class UserProfileActivity extends Activity {
 	static final String TAG = "UserProfileActivity";
-	private Context mContext;
+//	private Context mContext;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,7 +24,7 @@ public class UserProfileActivity extends Activity {
 		
 		getFragmentManager().beginTransaction().replace(android.R.id.content,
                 new UserPrefsFragment()).commit();
-		mContext = this;
+//		mContext = this;
 //		((Button) findViewById(R.id.btn_settings_done))
 //				.setOnClickListener(new OnClickListener() {
 //					public void onClick(View m) {

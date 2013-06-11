@@ -1,33 +1,33 @@
 package com.idthk.wristband.ui;
 
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 import com.idthk.wristband.ui.R;
-import com.idthk.wristband.ui.ScrollPagerMain.ScrollPagerMainCallback;
+//import com.idthk.wristband.ui.ScrollPagerMain.ScrollPagerMainCallback;
 
-import android.annotation.SuppressLint;
+//import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
+//import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ListFragment;
+//import android.support.v4.app.ListFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.AsyncTaskLoader;
+//import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
+//import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
+//import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+//import android.widget.LinearLayout;
+//import android.widget.TextView;
 import android.widget.Switch;
 //@SuppressLint("ValidFragment")
 public class SettingsFragment extends Fragment implements LoaderCallbacks<Void> {
@@ -47,7 +47,7 @@ public class SettingsFragment extends Fragment implements LoaderCallbacks<Void> 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
-		String message = getArguments().getString(EXTRA_MESSAGE);
+//		String message = getArguments().getString(EXTRA_MESSAGE);
 		View mRootView = inflater.inflate(R.layout.settings_fragment, container, false);
 		
 		Switch targetSwitch = (Switch) mRootView.findViewById(R.id.switch_target);
