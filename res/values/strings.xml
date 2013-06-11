@@ -125,4 +125,20 @@
     <string name="activity">Activity</string>
     <string name="Daily_Activity_Target_mins">Daily Activity Target(mins)</string>
     <string name="Target">Target</string>
+    <string name="serial">Serial</string>
+    <string name="unknown">Unknown</string>
+    <string name="steps">Steps</string>
+    <string name="calories">Calories(kcal)</string>
+    <string name="distances">Distances(km)</string>
+    <string name="zero">0</string>
+    <string name="sleep">Sleep</string>
+    <string name="Wake_up_Time">Wake up time</string>
+    <string name="Weekday">Weekday</string>
+    <string name="Weekend">Weekend</string>
+    <string name="Support">Support</string>
+    <string name="right_arrow">></string>
+    <string name="Help">Help</string>
+    <string name="User_manual">User manual</string>
+    <string name="Wristband_Version">Wristband Version</string>
+    <string name="App_Version">App Version</string>
 </resources>

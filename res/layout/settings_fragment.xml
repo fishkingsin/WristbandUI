@@ -1,12 +1,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:idt="http://schemas.android.com/apk/res/com.idthk.wristband.ui"
     android:id="@+id/scrollView1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/default_bg_color" >
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="left"
         android:orientation="vertical" >
 
         <TextView
@@ -14,51 +16,57 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/user"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <Button
+        <com.idthk.wristband.ui.RelativeLayoutButton
             android:id="@+id/btn_user_profile"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_selector"
-            android:text="@string/your_profile" />
+            idt:titleTextView="@string/your_profile"
+            idt:valueTextView="@string/right_arrow"/>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp" />
-        
+
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/activity"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" 
-            android:background="@drawable/border_grey_border">
+        <com.idthk.wristband.ui.RelativeLayoutButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button_selector"
+            idt:titleTextView="@string/Daily_Activity_Target_mins"
+            idt:valueTextView="@string/zero" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:text="@string/Daily_Activity_Target_mins"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/default_graey_text_color" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center" >
 
             <TextView
-                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:text="0"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/default_dark_text_color" />
+                android:text="@string/serial"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#:"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/serial_number_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/unknown"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
@@ -67,7 +75,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_grey_border_top"
+            android:background="@drawable/round_button_selector_top"
             android:orientation="vertical" >
 
             <Switch
@@ -77,45 +85,135 @@
                 android:text="@string/Target" />
         </LinearLayout>
 
-			<!-- <include
-			    android:id="@+id/Button10"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    layout="@layout/setting_tab"
-			    android:background="@drawable/border_grey_border_middle" /> -->
-			<com.idthk.wristband.ui.RelativeLayoutButton
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:background="@drawable/border_grey_border_middle" />
-<!--             <Button
-            android:id="@+id/Button10"
-            android:layout_width="fill_parent"
+        <com.idthk.wristband.ui.RelativeLayoutButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_grey_border_middle"
-            android:text="Button" 
-            android:textColor="@color/default_graey_text_color"/>
+            android:background="@drawable/round_button_selector_middle"
+            idt:titleTextView="@string/steps"
+            idt:valueTextView="@string/zero" />
 
-        <Button
-            android:id="@+id/Button10"
-            android:layout_width="fill_parent"
+        <com.idthk.wristband.ui.RelativeLayoutButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_grey_border_middle"
-            android:text="Button" 
-            android:textColor="@color/default_graey_text_color"/>
+            android:background="@drawable/round_button_selector_middle"
+            idt:titleTextView="@string/calories"
+            idt:valueTextView="@string/zero" />
 
-        <Button
-            android:id="@+id/Button09"
-            android:layout_width="fill_parent"
+        <com.idthk.wristband.ui.RelativeLayoutButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_grey_border_bottom"
-            android:textColor="@color/default_graey_text_color"
-            android:text="Button" /> -->
+            android:background="@drawable/round_button_selector_bottom"
+            idt:titleTextView="@string/distances"
+            idt:valueTextView="@string/zero" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp" />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sleep"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <com.idthk.wristband.ui.RelativeLayoutButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button_selector_top"
+            idt:titleTextView="@string/Wake_up_Time"
+            idt:valueTextView="@string/zero" />
+
+        <com.idthk.wristband.ui.RelativeLayoutButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button_selector_middle"
+            idt:titleTextView="@string/Weekday"
+            idt:valueTextView="@string/zero" />
+
+        <com.idthk.wristband.ui.RelativeLayoutButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button_selector_bottom"
+            idt:titleTextView="@string/Weekend"
+            idt:valueTextView="@string/zero" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Support"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
         
+        <com.idthk.wristband.ui.RelativeLayoutButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button_selector"
+            idt:titleTextView="@string/Help"
+            idt:valueTextView="@string/right_arrow" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+        <com.idthk.wristband.ui.RelativeLayoutButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button_selector"
+            idt:titleTextView="@string/User_manual"
+            idt:valueTextView="@string/right_arrow" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="left" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Wristband_Version"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/wristbane_version_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/unknown"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="left" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/App_Version"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/wristbane_version_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/unknown"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

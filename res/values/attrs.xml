@@ -18,8 +18,9 @@
 	</declare-styleable>
 	
 	<declare-styleable name="RelativeLayoutButton">
-	    <attr name="titleText" format="string" localization="suggested" />
-        <attr name="valueColor" format="color" />
+	    
+		<attr name="titleTextView" format="reference" />
+		<attr name="valueTextView" format="reference" />
 	</declare-styleable>
 	
     <style name="ProgressHUD" parent="@android:style/Theme.Dialog">

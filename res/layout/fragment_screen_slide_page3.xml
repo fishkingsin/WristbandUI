@@ -81,7 +81,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/serial_number_textview"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/connecttomobile_content"
