@@ -9,14 +9,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/user"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/default_light_text_color" />
 
         <com.idthk.wristband.ui.RelativeLayoutButton
             android:id="@+id/btn_user_profile"
@@ -37,6 +40,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <com.idthk.wristband.ui.RelativeLayoutButton
+            android:id="@+id/btn_user_activity_target_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_selector"
@@ -86,6 +90,7 @@
         </LinearLayout>
 
         <com.idthk.wristband.ui.RelativeLayoutButton
+            android:id="@+id/btn_user_target_step_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_selector_middle"
@@ -93,6 +98,7 @@
             idt:valueTextView="@string/zero" />
 
         <com.idthk.wristband.ui.RelativeLayoutButton
+            android:id="@+id/btn_user_target_calories_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_selector_middle"
@@ -100,6 +106,7 @@
             idt:valueTextView="@string/zero" />
 
         <com.idthk.wristband.ui.RelativeLayoutButton
+            android:id="@+id/btn_user_target_distance_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_selector_bottom"
@@ -118,6 +125,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <com.idthk.wristband.ui.RelativeLayoutButton
+            android:id="@+id/btn_user_sleep_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_selector_top"
@@ -129,9 +137,11 @@
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_selector_middle"
             idt:titleTextView="@string/Weekday"
+            android:id="@+id/btn_user_sleep_weekday_profile"
             idt:valueTextView="@string/zero" />
 
         <com.idthk.wristband.ui.RelativeLayoutButton
+            android:id="@+id/btn_user_sleep_weekend_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_selector_bottom"
@@ -150,6 +160,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
         
         <com.idthk.wristband.ui.RelativeLayoutButton
+            android:id="@+id/btn_help_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_selector"
@@ -159,12 +170,15 @@
             android:layout_width="match_parent"
             android:layout_height="10dp" />
         <com.idthk.wristband.ui.RelativeLayoutButton
+            android:id="@+id/btn_manual_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_selector"
             idt:titleTextView="@string/User_manual"
             idt:valueTextView="@string/right_arrow" />
-
+<Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -189,7 +203,9 @@
                 android:text="@string/unknown"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
-        
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -208,12 +224,15 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/wristbane_version_textview"
+                android:id="@+id/app_version_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/unknown"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
     </LinearLayout>
 
 </ScrollView>

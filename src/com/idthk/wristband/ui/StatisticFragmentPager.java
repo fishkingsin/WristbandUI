@@ -10,7 +10,13 @@
 package com.idthk.wristband.ui;
 
 
+import java.util.Random;
+
 import com.idthk.wristband.ui.R;
+import com.jjoe64.graphview.BarGraphView;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GraphViewSeries;
+import com.jjoe64.graphview.GraphView.GraphViewData;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -42,8 +48,8 @@ public class StatisticFragmentPager extends Fragment {
 	 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	   Bundle savedInstanceState) {
 	   
-	   View v = inflater.inflate(R.layout.statistic_fragmentpager, container, false);
-	   mViewPager = (ViewPager) v.findViewById(R.id.pager2);
+	   View mRootView = inflater.inflate(R.layout.statistic_fragmentpager, container, false);
+	   mViewPager = (ViewPager) mRootView.findViewById(R.id.pager2);
 	   mMyStatisticFragmentPagerAdapter = new MyStatisticFragmentPagerAdapter(getFragmentManager());
 	   mViewPager.setAdapter(mMyStatisticFragmentPagerAdapter);
 	   mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -59,8 +65,10 @@ public class StatisticFragmentPager extends Fragment {
             
            }
        });
+	   
+	  
 	 
-	   return v;
+	   return mRootView;
 	 }
 	@Override
     public void onAttach(Activity activity) {

@@ -19,13 +19,16 @@ import com.idthk.wristband.ui.R;
 
 import android.support.v4.app.Fragment;
 import android.app.Activity;
+import android.content.SharedPreferences;
 //import android.app.Fragment;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ImageView;
 
@@ -40,17 +43,21 @@ public class ScreenSlidePageFragment extends Fragment{
     /**
      * The argument key for the page number this fragment represents.
      */
+	public static final int CLOSE_REQUEST = 0;
+	public static final int USERPROFILE_REQUEST = 1;
     public static final String ARG_PAGE = "page";
+    public static final String ARG_FIRSTTIME = "firsttime";
     public static final String TAG = "ScreenSlidePageFragment";
     OnSkipClickedListener mCallback;
+    
     public interface OnSkipClickedListener {
-        public void onSelected();
+        public void onSelected(int arg);
     }
     /**
      * The fragment's page number, which is set to the argument value for {@link #ARG_PAGE}.
      */
     private int mPageNumber;
-
+private boolean bFirstTime = true;
     /**
      * Factory method for this fragment class. Constructs a new fragment for the given page number.
      */
@@ -68,10 +75,11 @@ public class ScreenSlidePageFragment extends Fragment{
         }
     }
     
-    public static ScreenSlidePageFragment create(int pageNumber) {
+    public static ScreenSlidePageFragment create(int pageNumber ,boolean firstTime) {
         ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, pageNumber);
+        args.putBoolean(ARG_FIRSTTIME, firstTime);
         fragment.setArguments(args);
         return fragment;
     }
@@ -83,6 +91,7 @@ public class ScreenSlidePageFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPageNumber = getArguments().getInt(ARG_PAGE);
+        bFirstTime = getArguments().getBoolean(ARG_FIRSTTIME);
     }
 
     @Override
@@ -105,27 +114,45 @@ public class ScreenSlidePageFragment extends Fragment{
         	rootView = (ViewGroup) inflater
                 .inflate(R.layout.fragment_screen_slide_page3, container, false);
         	TextView tv = (TextView)rootView.findViewById(R.id.slide3_skip_textview);
+        	if(bFirstTime)
+        	{
         	tv.setOnClickListener( new OnClickListener() {
                 public void onClick(View m) {
                 	Log.v(TAG,"TextView clicked");
-                	mCallback.onSelected();
+                	mCallback.onSelected(USERPROFILE_REQUEST);
 //                    Toast.makeText(collection.getContext(),"click",Toast.LENGTH_LONG).show();
                  }
              });
+        	}
         }
     	else
     	{
     		rootView = (ViewGroup) inflater
                     .inflate(R.layout.fragment_screen_slide_page1, container, false);
     	}
+    	
+	    if(bFirstTime)
+	    {
+	    	((Button)rootView.findViewById(R.id.button_instruction_close)).setVisibility(View.GONE);
+    	}
+    	else
+    	{
+    		((Button)rootView.findViewById(R.id.button_instruction_close)).setOnClickListener( new OnClickListener() {
+                public void onClick(View m) {
+                	
+                	mCallback.onSelected(CLOSE_REQUEST);
+                 }
+             });
+    	}
+    	
         // Set the title view to show the page number.
 //        ((TextView) rootView.findViewById(android.R.id.text1)).setText(getString(R.string.title_template_step, mPageNumber + 1));
         
         return rootView;
     }
-    public void onClick(View arg0) {
-        Log.v(TAG,"onClick");
-    }
+//    public void onClick(View arg0) {
+//        Log.v(TAG,"onClick");
+//    }
     /**
      * Returns the page number represented by this fragment object.
      */

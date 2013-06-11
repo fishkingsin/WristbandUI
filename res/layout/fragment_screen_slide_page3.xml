@@ -51,15 +51,16 @@
             android:paddingRight="10dp"
             android:paddingTop="10dp">
 
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/help_3" />
-
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"
+                android:padding="10dp" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/help_3" />
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -98,16 +99,23 @@
                     android:clickable="true"
                     android:text="@string/instruction_page3_skip"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
-<Button
-                android:id="@+id/button_instruction_close"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/x"
-                 />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <Button
+                    android:id="@+id/button_instruction_close"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="41dp"
+                    android:background="@drawable/x" />
+
             </RelativeLayout>
 
         </FrameLayout>

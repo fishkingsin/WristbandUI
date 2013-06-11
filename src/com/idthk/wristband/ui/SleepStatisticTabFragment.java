@@ -21,9 +21,9 @@ public class SleepStatisticTabFragment extends Fragment implements OnTabChangeLi
 
 	private static final String TAG = "TabFragmentTab";
 	
-	public static final String TAB_WEEK = "tab_week";
-	public static final String TAB_MONTH = "tab_month";
-	public static final String TAB_YEAR = "tab_year";
+	public static final String TAB_WEEK = "tab_sleep_week";
+	public static final String TAB_MONTH = "tab_sleep_month";
+	public static final String TAB_YEAR = "tab_sleep_year";
 
 	private View mRoot;
 	private TabHost mTabHost;
@@ -51,7 +51,7 @@ public class SleepStatisticTabFragment extends Fragment implements OnTabChangeLi
 		mTabHost.setOnTabChangedListener(this);
 		mTabHost.setCurrentTab(mCurrentTab);
 		// manually start loading stuff in the first tab
-		updateTab(TAB_WEEK, R.id.tab_week2);
+		updateTab(TAB_WEEK, R.id.tab_week1);
 	}
 
 	private void setupTabs() {
@@ -129,7 +129,7 @@ public class SleepStatisticTabFragment extends Fragment implements OnTabChangeLi
 			//gonna to manage actvitiy here
 		
 			fm.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-					.replace(placeholder, StatisticFragment.newInstance(tabId), tabId)
+					.replace(placeholder, SleepStatisticFragment.newInstance(tabId), tabId)
 					.commit();
 		}
 		else
