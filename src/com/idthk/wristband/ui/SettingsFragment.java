@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -50,12 +51,12 @@ public class SettingsFragment extends Fragment implements LoaderCallbacks<Void> 
 		View mRootView = inflater.inflate(R.layout.settings_fragment, container, false);
 		
 		Switch targetSwitch = (Switch) mRootView.findViewById(R.id.switch_target);
-		 prefs = this.getActivity().getSharedPreferences(getString(R.string.pref_name), 0);
+		prefs = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
  		boolean target = prefs.getBoolean(getString(R.string.key_target), true);
  		targetSwitch.setChecked(target);
 		targetSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		    	  Log.v("SettingsFragment " ,"isChecked "+ isChecked);
+//		    	  Log.v("SettingsFragment " ,"isChecked "+ isChecked);
 				SharedPreferences.Editor editor = prefs.edit();
 				editor.putBoolean(getString(R.string.key_target), isChecked);
 
@@ -73,9 +74,14 @@ public class SettingsFragment extends Fragment implements LoaderCallbacks<Void> 
 		
 //		TextView messageTextView = (TextView) v.findViewById(R.id.textView1);
 //		messageTextView.setText(message);
-		((Button) mRootView.findViewById(R.id.Button12)).setOnClickListener( new OnClickListener() {
+//		((Button) mRootView.findViewById(R.id.btn_general_settings)).setOnClickListener( new OnClickListener() {
+//            public void onClick(View m) {
+//            	getActivity().startActivityForResult(new Intent(getActivity(), FragmentPreferences.class),ACTIVITY_REQUEST);
+//             }
+//         } );
+		((Button) mRootView.findViewById(R.id.btn_user_profile)).setOnClickListener( new OnClickListener() {
             public void onClick(View m) {
-            	getActivity().startActivityForResult(new Intent(getActivity(), FragmentPreferences.class),ACTIVITY_REQUEST);
+            	getActivity().startActivityForResult(new Intent(getActivity(), UserProfileActivity.class),ACTIVITY_REQUEST);
              }
          } );
 		

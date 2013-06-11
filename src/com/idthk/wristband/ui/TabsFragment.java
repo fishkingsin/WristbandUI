@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
@@ -90,12 +92,13 @@ public class TabsFragment extends Fragment implements OnTabChangeListener {
 
 		LinearLayout ll = ((LinearLayout) indicator
 				.findViewById(R.id.tab_layout));
+		ImageView iv = (ImageView) ll.findViewById(R.id.tab_image);
 		if (tabContentId == R.id.tab_1) {
-			ll.setBackgroundResource(R.drawable.tab_selector_home);
+			iv.setImageResource(R.drawable.tab_selector_home);
 		} else if (tabContentId == R.id.tab_2) {
-			ll.setBackgroundResource(R.drawable.tab_selector_graph);
+			iv.setImageResource(R.drawable.tab_selector_graph);
 		} else {
-			ll.setBackgroundResource(R.drawable.tab_selector_settings);
+			iv.setImageResource(R.drawable.tab_selector_settings);
 		}
 
 		TabSpec tabSpec = mTabHost.newTabSpec(tag);

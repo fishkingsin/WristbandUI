@@ -17,7 +17,15 @@
 package com.idthk.wristband.ui;
 
 import java.io.File;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.prefs.PreferenceChangeEvent;
+import java.util.prefs.PreferenceChangeListener;
+import java.util.prefs.Preferences;
+
+import org.xmlpull.v1.XmlPullParser;
 
 import com.idthk.wristband.ui.R;
 import com.idthk.wristband.ui.ScrollPagerMain.ScrollPagerMainCallback;
@@ -38,7 +46,11 @@ import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.AsyncTask;
 //import android.app.Fragment;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
+import android.util.AttributeSet;
 import android.util.Log;
+import android.util.Xml;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,13 +89,14 @@ public class MainSlideFragment extends Fragment implements
 	ViewGroup mRootView;
 	OnShareButtonClickedListener mCallback;
 	CustomProgressBar m_regularProgressBar;
-	
+
 	View targetView;
 	View nonTargetView;
 	TextView goalStepsTv;
 	TextView goalCaloriesTv;
 	TextView goalDistancesTv;
-
+	TextView userNameTv;
+	GraphView mGraphView ;
 	public interface OnShareButtonClickedListener {
 		public void onShareButtonClicked(String s);
 	}
@@ -93,6 +106,7 @@ public class MainSlideFragment extends Fragment implements
 	 * {@link #ARG_PAGE}.
 	 */
 	private int mPageNumber;
+	private TextView lastSyncTimeTv;
 
 	/**
 	 * Factory method for this fragment class. Constructs a new fragment for the
@@ -129,29 +143,33 @@ public class MainSlideFragment extends Fragment implements
 		mPageNumber = getArguments().getInt(ARG_PAGE);
 		Log.v(TAG, "ScreenSlidePageFragment : ID " + this.getId());
 	}
+
 	@Override
-	public void onDestroyView()
-	{
-		SharedPreferences prefs = this.getActivity().getSharedPreferences(
-				getString(R.string.pref_name), 0);
-		prefs.unregisterOnSharedPreferenceChangeListener(this);
+	public void onDestroyView() {
+
+		PreferenceManager.getDefaultSharedPreferences(this.getActivity())
+				.unregisterOnSharedPreferenceChangeListener(this);
+
 		super.onDestroyView();
 	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
+		SharedPreferences sharedPreferences = PreferenceManager
+				.getDefaultSharedPreferences(this.getActivity());
+		sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 		if (mPageNumber == 0) {
 			mRootView = (ViewGroup) inflater.inflate(
 					R.layout.main_scrollview_activity, container, false);
-			
-			SharedPreferences prefs = this.getActivity().getSharedPreferences(
-					getString(R.string.pref_name), 0);
-			publishSettings(prefs);
-			
+			userNameTv = ((TextView) mRootView.findViewById(R.id.userNameTv));
+			lastSyncTimeTv = ((TextView) mRootView
+					.findViewById(R.id.last_sync_time_textview));
 
-			prefs.registerOnSharedPreferenceChangeListener(this);
-			String path = prefs.getString("profile_pic", "");
+			publishSettings(sharedPreferences);
+
+			String path = sharedPreferences.getString(
+					getString(R.string.key_profile_pic), "");
 			Log.v(TAG, "profile path : " + path);
 			if (path != "") {
 				Bitmap myBitmap = Utilities.decodeFile(new File(path),
@@ -187,12 +205,15 @@ public class MainSlideFragment extends Fragment implements
 			m_regularProgressBar = (CustomProgressBar) mRootView
 					.findViewById(R.id.target_progress_bar_large);
 
-			m_regularProgressBar.setTarget(80);
-			m_regularProgressBar.setProgressInMins(40);
-			new UpdateBarTask().execute();
+			m_regularProgressBar.setTarget(0);
+			m_regularProgressBar.setProgressInMins(0);
+//			new UpdateBarTask().execute();
 		} else {
 			mRootView = (ViewGroup) inflater.inflate(
 					R.layout.main_scrollview_sleep, container, false);
+			userNameTv = ((TextView) mRootView.findViewById(R.id.userNameTv));
+			lastSyncTimeTv = ((TextView) mRootView
+					.findViewById(R.id.last_sync_time_textview));
 			((Button) mRootView.findViewById(R.id.button_facebook_share))
 					.setOnClickListener(new OnClickListener() {
 						public void onClick(View m) {
@@ -207,9 +228,9 @@ public class MainSlideFragment extends Fragment implements
 							mCallback.onShareButtonClicked(TWITTER);
 						}
 					});
-			SharedPreferences prefs = this.getActivity().getSharedPreferences(
-					getString(R.string.pref_name), 0);
-			String path = prefs.getString("profile_pic", "");
+
+			String path = sharedPreferences.getString(
+					getString(R.string.key_profile_pic), "");
 			Log.v(TAG, "profile path : " + path);
 			if (path != "") {
 				Bitmap myBitmap = Utilities.decodeFile(new File(path),
@@ -217,61 +238,96 @@ public class MainSlideFragment extends Fragment implements
 				((ImageView) mRootView.findViewById(R.id.profile_pic))
 						.setImageBitmap(myBitmap);
 			}
-
+			publishSettings(sharedPreferences);
 			populateGraph(mRootView);
 
 		}
+
 		return mRootView;
 	}
 
 	private void publishSettings(SharedPreferences prefs) {
 		// TODO Auto-generated method stub
-		
-		boolean target = prefs.getBoolean(getString(R.string.key_target),
-				true);
-		targetView = ((View) mRootView.findViewById(R.id.target_layout_on));
-		nonTargetView = ((View) mRootView.findViewById(R.id.target_layout_off));
-			
-		targetView.setVisibility((target)?View.VISIBLE:View.GONE);
-			
-		nonTargetView.setVisibility((target)?View.GONE:View.VISIBLE);
-		
-		int targetSteps = prefs.getInt(getString(R.string.key_targetSteps), 0);
-		int targetCalories = prefs.getInt(getString(R.string.key_targetCalories), 0);
-		int targetDistances = prefs.getInt(getString(R.string.key_targetDistances), 0);
-		
-		goalStepsTv = ((TextView)mRootView.findViewById(R.id.goal_steps_indicat_textview));
-		goalStepsTv.setText(""+targetSteps);
-		goalCaloriesTv = ((TextView)mRootView.findViewById(R.id.goal_calories_indicate_textview));
-		goalCaloriesTv.setText(""+targetCalories);
-		goalDistancesTv = ((TextView)mRootView.findViewById(R.id.goal_distances_indicat_textview));
-		goalDistancesTv.setText(""+targetDistances);
+		if (mPageNumber == 0) {
+			boolean target = prefs.getBoolean(getString(R.string.key_target),
+					true);
+			targetView = ((View) mRootView.findViewById(R.id.target_layout_on));
+			nonTargetView = ((View) mRootView
+					.findViewById(R.id.target_layout_off));
+
+			targetView.setVisibility((target) ? View.VISIBLE : View.GONE);
+
+			nonTargetView.setVisibility((target) ? View.GONE : View.VISIBLE);
+
+			int targetSteps = prefs.getInt(getString(R.string.key_targetSteps),
+					0);
+			int targetCalories = prefs.getInt(
+					getString(R.string.key_targetCalories), 0);
+			int targetDistances = prefs.getInt(
+					getString(R.string.key_targetDistances), 0);
+
+			goalStepsTv = ((TextView) mRootView
+					.findViewById(R.id.goal_steps_indicat_textview));
+			goalStepsTv.setText("" + targetSteps);
+			goalCaloriesTv = ((TextView) mRootView
+					.findViewById(R.id.goal_calories_indicate_textview));
+			goalCaloriesTv.setText("" + targetCalories);
+			goalDistancesTv = ((TextView) mRootView
+					.findViewById(R.id.goal_distances_indicat_textview));
+			goalDistancesTv.setText("" + targetDistances);
+		} else {
+
+		}
+
+		lastSyncTimeTv.setText(prefs.getString(getString(R.string.key_last_sync_time), getString(R.string.default_last_sync_time)));
+		userNameTv.setText(prefs.getString(getString(R.string.key_user_name),
+				getString(R.string.default_user_name)));
 	}
 
 	private void populateGraph(View mRootView) {
 		// TODO Auto-generated method stub
 		// init example series data
 		Random random = new Random();
-		GraphViewSeries exampleSeries = new GraphViewSeries(
-				new GraphViewData[] {
-						new GraphViewData(1, 2.0d),
-						new GraphViewData(2, 1.5d),
-						new GraphViewData(2.5, 3.0d), 
-						new GraphViewData(3, 2.5d),
-						new GraphViewData(4, 1.0d),
-						new GraphViewData(5, random.nextInt(10)),
-						new GraphViewData(6, random.nextInt(10)),
-						new GraphViewData(7, random.nextInt(10)),
-						new GraphViewData(8, random.nextInt(10)),
-						new GraphViewData(9, random.nextInt(10)),});
+		int numBars = 20;
+		GraphViewData data[] = new GraphViewData[numBars];
+
+		for (int i = 0; i < numBars; i++) {
+			data[i] = new GraphViewData(i, random.nextInt(10));
+		}
+		// {
+		// new GraphViewData(1, 2.0d),
+		// new GraphViewData(2, 1.5d),
+		// new GraphViewData(2.5, 3.0d),
+		// new GraphViewData(3, 2.5d),
+		// new GraphViewData(4, 1.0d),
+		// new GraphViewData(5, random.nextInt(10)),
+		// new GraphViewData(6, random.nextInt(10)),
+		// new GraphViewData(7, random.nextInt(10)),
+		// new GraphViewData(8, random.nextInt(10)),
+		// new GraphViewData(9, random.nextInt(10))};
+
+		GraphViewSeries exampleSeries = new GraphViewSeries(data);
 
 		// graph with dynamically genereated horizontal and vertical labels
-		GraphView graphView;
-		graphView = new LineGraphView(getActivity(), "In bed time 9 hrs");
-		graphView.setHorizontalLabels(new String[] { "11:00 pm", "8:00 am" });
-		graphView.setVerticalLabels(new String[] { "high", "middle", "low" });
-		graphView.addSeries(exampleSeries); // data
-		((ViewGroup) mRootView.findViewById(R.id.graph1)).addView(graphView);
+		if(mGraphView!=null)
+		{
+			mGraphView = null;
+		}
+			
+		mGraphView = new BarGraphView(getActivity(), "");
+		
+		mGraphView.setHorizontalLabels(new String[] { getString(R.string.start), getString(R.string.end) });
+		mGraphView.setVerticalLabels(new String[] { getString(R.string.high), getString(R.string.middle), getString(R.string.low) });
+		mGraphView.addSeries(exampleSeries); // data
+		
+		mGraphView.setViewPort(10, 5);  
+//		mGraphView.setScrollable(true);  
+		// optional - activate scaling / zooming  
+//		mGraphView.setScalable(true);  
+		
+		((ViewGroup) mRootView.findViewById(R.id.graph1)).addView(mGraphView);
+		
+		
 	}
 
 	/**
@@ -284,30 +340,36 @@ public class MainSlideFragment extends Fragment implements
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
-		if(key.equals(getString(R.string.key_target)))
-		{
+		if (key.equals(getString(R.string.key_target)) && mPageNumber == 0) {
 			boolean target = sharedPreferences.getBoolean(key, false);
-			targetView.setVisibility((target)?View.VISIBLE:View.GONE);
-			
-			nonTargetView.setVisibility((target)?View.GONE:View.VISIBLE);
+			targetView.setVisibility((target) ? View.VISIBLE : View.GONE);
+
+			nonTargetView.setVisibility((target) ? View.GONE : View.VISIBLE);
+		} else if (key.equals(getString(R.string.key_target))
+				&& mPageNumber == 0) {
+			int targetSteps = sharedPreferences.getInt(
+					getString(R.string.key_targetSteps), 0);
+			goalStepsTv.setText(targetSteps);
+		} else if (key.equals(getString(R.string.key_targetCalories))
+				&& mPageNumber == 0) {
+			int targetCalories = sharedPreferences.getInt(
+					getString(R.string.key_targetCalories), 0);
+			goalCaloriesTv.setText(targetCalories);
+		} else if (key.equals(getString(R.string.key_targetDistances))
+				&& mPageNumber == 0) {
+			int targetDistances = sharedPreferences.getInt(
+					getString(R.string.key_targetDistances), 0);
+			goalDistancesTv.setText(targetDistances);
 		}
-		else if(key.equals(getString(R.string.key_target)))
-		{
-		int targetSteps = sharedPreferences.getInt(getString(R.string.key_targetSteps), 0);
-		goalStepsTv.setText(targetSteps);
+
+		else if (key.equals(getString(R.string.key_user_name))) {
+			userNameTv.setText(sharedPreferences.getString(
+					getString(R.string.key_user_name),
+					getString(R.string.default_user_name)));
+		} else {
+			Log.v(TAG, "key :" + key);
 		}
-		else if(key.equals(getString(R.string.key_target)))
-		{
-		int targetCalories = sharedPreferences.getInt(getString(R.string.key_targetCalories), 0);
-		goalCaloriesTv.setText(targetCalories);
-		}
-		else if(key.equals(getString(R.string.key_target)))
-		{
-		int targetDistances = sharedPreferences.getInt(getString(R.string.key_targetDistances), 0);
-		goalDistancesTv.setText(targetDistances);
-		}
-		
-		
+
 	}
 
 	private class UpdateBarTask extends AsyncTask<Void, Integer, Void> {
