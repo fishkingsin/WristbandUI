@@ -8,9 +8,11 @@ import com.idthk.wristband.ui.MainSlideFragment.OnShareButtonClickedListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.hardware.SensorManager;
 //import android.content.res.Configuration;
 //import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.OrientationEventListener;
@@ -33,24 +35,27 @@ public class Main extends FragmentActivity implements
 	static final int IMAGE_GALLERY_REQUEST= 0x60;
 	static final int TAKE_PHOTO_CODE= 0x70;
 	static final int SELECT_IMAGE_CODE = 0x90;
-	
+	static final int THRESHOLD = 5;
 	static final String TAG = "Main";
 	
 	static final String FIRST_TIME = "firsttime";
 	public static final String TITLE = "title";
+	public static final String TARGET_ORIENTTION = "target_orientation";
 	
-	OrientationEventListener myOrientationEventListener;
+	OrientationEventListener orientationListener;
 	OnShareButtonClickedListener myShareButtonClickedListener;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView(R.layout.main);
-		SharedPreferences prefs = getSharedPreferences(getString(R.string.pref_name), 0);
+		SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(this);
 		boolean firstTime = prefs.getBoolean(FIRST_TIME, true);
 		if (firstTime) {
 
 			Intent intent = new Intent(this, InstructionActivity.class);
+			intent.putExtra(ScreenSlidePageFragment.ARG_FIRSTTIME, firstTime);
 			startActivityForResult(intent,TO_INSTRUCTION_REQUEST);
 
 			SharedPreferences.Editor editor = prefs.edit();
@@ -61,34 +66,23 @@ public class Main extends FragmentActivity implements
 		}
 		else
 		{
-			/*myOrientationEventListener = new OrientationEventListener(this,
-					SensorManager.SENSOR_DELAY_NORMAL) {
+			
+			
+		
+			orientationListener = new OrientationEventListener(this,SensorManager.SENSOR_DELAY_UI)
+			{
 
 				@Override
-				public void onOrientationChanged(int arg0) {
-					Log.v(TAG, "Orientation :" + String.valueOf(arg0));
+				public void onOrientationChanged(int orientation) {
+					// TODO Auto-generated method stub
+					if(canShow(orientation)){
+						startLandscapeActivity(orientation);
+						
+			         } 
 					
-//					if (arg0 > 90 || arg0 < 270) {
-//
-//						startLandscapeActivity();
-//
-//					}
-					switch (getResources().getConfiguration().orientation) {
-				    case Configuration.ORIENTATION_LANDSCAPE:
-				        Log.v(TAG,"Configuration.ORIENTATION_LANDSCAPE");
-				        break;
-				    case Configuration.ORIENTATION_PORTRAIT:
-				        //xxx
-				    	Log.v(TAG,"Configuration.ORIENTATION_PORTRAIT");
-				        break;
-					}
-
 				}
+				
 			};
-			if (myOrientationEventListener.canDetectOrientation()) {
-				myOrientationEventListener.enable();
-			}*/
-
 		}
 //		 Intent intent = new Intent(this, FragmentPreferences
 //		 .class);
@@ -110,10 +104,34 @@ public class Main extends FragmentActivity implements
         Log.v(TAG,"requestCode " + requestCode +" resultCode "+ resultCode);
         
     }
-	private void startLandscapeActivity() {
+	private void startLandscapeActivity(int orientation) {
+		
 		Intent intent = new Intent(this, LandscapeActivity.class);
+		if(isLandscapeLeft(orientation))
+		{
+		intent.putExtra(Main.TARGET_ORIENTTION, ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		}
+		else
+		{
+			intent.putExtra(Main.TARGET_ORIENTTION, ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+		}
 		startActivityForResult(intent,LANSCAPE_REQUEST);
 	}
+	
+	private boolean isLandscapeRight(int orientation){
+        return orientation >= (90 - THRESHOLD) && orientation <= (90 + THRESHOLD);
+    }
+	private boolean isLandscapeLeft(int orientation){
+        return orientation >= (270 - THRESHOLD) && orientation <= (270 + THRESHOLD);
+    }
+
+private boolean isPortrait(int orientation){
+    return (orientation >= (360 - THRESHOLD) && orientation <= 360) || (orientation >= 0 && orientation <= THRESHOLD);
+}
+
+public boolean canShow(int orientation){
+    return  isLandscapeLeft(orientation) || isLandscapeRight(orientation);
+}
 
 	// public void onConfigurationChanged(Configuration newConfig) {
 	// super.onConfigurationChanged(newConfig);
@@ -178,5 +196,17 @@ public class Main extends FragmentActivity implements
 		((TextView) findViewById(R.id.titlebar_textview))
 		.setText(s);
 		
+	}
+	
+	@Override
+	public void onResume(){
+	    super.onResume();
+	    if(orientationListener!=null)orientationListener.enable();
+	}
+
+	@Override
+	public void onPause(){
+	    super.onPause();
+	    if(orientationListener!=null)orientationListener.disable();
 	}
 }
