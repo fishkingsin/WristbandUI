@@ -30,14 +30,20 @@ public class RelativeLayoutButton extends RelativeLayout {
 
 		TypedArray a = context.obtainStyledAttributes(attrs,
 				R.styleable.RelativeLayoutButton, 0, 0);
+		String titleText = a.getString(R.styleable.RelativeLayoutButton_titleTextView);
+		String valueText = a.getString(R.styleable.RelativeLayoutButton_valueTextView);
 		a.recycle();
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.setting_tab, this, true);
+		View view = inflater.inflate(R.layout.relativelayout_button, this, true);
 		
-		TextView tv1 = (TextView)view.findViewById(R.id.setting_tab_title_textview);
-		TextView tv2 = (TextView)view.findViewById(R.id.setting_tab_goal_textview);
-		tv1.setText("TV1");
-		tv2.setText("TV2");
+//		TextView tv1 = (TextView)view.findViewById(R.id.setting_tab_title_textview);
+//		TextView tv2 = (TextView)view.findViewById(R.id.setting_tab_goal_textview);
+//		tv1.setText("TV1");
+//		tv2.setText("TV2");
+		
+		
+		setText(R.id.setting_tab_title_textview,titleText);
+		setText(R.id.setting_tab_goal_textview,valueText);
 	}
 
 	// method for setting texts for the text views

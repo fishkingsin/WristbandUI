@@ -30,11 +30,12 @@ import android.widget.CompoundButton;
 //import android.widget.TextView;
 import android.widget.Switch;
 //@SuppressLint("ValidFragment")
-public class SettingsFragment extends Fragment implements LoaderCallbacks<Void> {
+public class SettingsFragment extends Fragment implements LoaderCallbacks<Void> ,OnClickListener{
 	public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
 	public static final String TARGET = "target";
 	static final int ACTIVITY_REQUEST = 0;
 	private SharedPreferences prefs;
+	private Object mUserProfileButton;
 	public static final SettingsFragment newInstance(String message) {
 		SettingsFragment f = new SettingsFragment();
 		Bundle bdl = new Bundle(1);
@@ -79,11 +80,8 @@ public class SettingsFragment extends Fragment implements LoaderCallbacks<Void> 
 //            	getActivity().startActivityForResult(new Intent(getActivity(), FragmentPreferences.class),ACTIVITY_REQUEST);
 //             }
 //         } );
-		((Button) mRootView.findViewById(R.id.btn_user_profile)).setOnClickListener( new OnClickListener() {
-            public void onClick(View m) {
-            	getActivity().startActivityForResult(new Intent(getActivity(), UserProfileActivity.class),ACTIVITY_REQUEST);
-             }
-         } );
+		mUserProfileButton = ((RelativeLayoutButton) mRootView.findViewById(R.id.btn_user_profile));
+		((View) mUserProfileButton).setOnClickListener(this );
 		
 
 		return mRootView;
@@ -113,5 +111,15 @@ public class SettingsFragment extends Fragment implements LoaderCallbacks<Void> 
 	public void onLoaderReset(Loader<Void> arg0) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		if(v.equals(mUserProfileButton))
+		{
+			getActivity().startActivityForResult(new Intent(getActivity(), UserProfileActivity.class),ACTIVITY_REQUEST);
+		}
+		
 	}
 }
