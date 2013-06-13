@@ -23,7 +23,7 @@
         <EditTextPreference
                 android:title="@string/pref_user_name"
                 android:summary="@string/pref_user_name_summary"
-                android:key="@string/key_user_name"
+                android:key="@string/pref_user_name"
                 android:defaultValue="User"/>
         <ListPreference
                 android:key="prefUserGender"

@@ -2,6 +2,7 @@ package com.idthk.wristband.ui;
 
 import java.util.Random;
 
+import com.idthk.wristband.graphview.RoundBarGraphView;
 import com.jjoe64.graphview.BarGraphView;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphViewSeries;
@@ -69,7 +70,7 @@ public class LandscapeActivity extends Activity {
 
 		// graph with dynamically genereated horizontal and vertical labels
 
-		GraphView mGraphView = new BarGraphView(this, "");
+		GraphView mGraphView = new RoundBarGraphView(this, "");
 
 		mGraphView.setHorizontalLabels(new String[] {
 				getString(R.string.start), getString(R.string.end) });

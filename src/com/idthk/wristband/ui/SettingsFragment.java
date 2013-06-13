@@ -76,13 +76,13 @@ public class SettingsFragment extends Fragment implements LoaderCallbacks<Void> 
 		
 		Switch targetSwitch = (Switch) mRootView.findViewById(R.id.switch_target);
 		prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
- 		boolean target = prefs.getBoolean(getString(R.string.key_target), true);
+ 		boolean target = prefs.getBoolean(getString(R.string.pref_target), true);
  		targetSwitch.setChecked(target);
 		targetSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 //		    	  Log.v("SettingsFragment " ,"isChecked "+ isChecked);
 				SharedPreferences.Editor editor = prefs.edit();
-				editor.putBoolean(getString(R.string.key_target), isChecked);
+				editor.putBoolean(getString(R.string.pref_target), isChecked);
 
 				// Commit the edits!
 				editor.commit();

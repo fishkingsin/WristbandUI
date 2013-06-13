@@ -1,9 +1,12 @@
 package com.idthk.wristband.ui;
 
+import com.idthk.wristband.socialnetwork.FacebookShareActivity;
 import com.idthk.wristband.ui.R;
 //import com.idthk.wristband.ui.MainSlideFragment.OnShareButtonClickedListener;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 //import android.app.FragmentTransaction;
 //import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -35,6 +38,7 @@ public class TabsFragment extends Fragment implements OnTabChangeListener {
 	private int mCurrentTab;
 //	private int mPreviousTab;
 	OnFragmentTabbedListener mCallback;
+	private Context mContext;
     public interface OnFragmentTabbedListener {
         public void onTabbed(String s);
     }
@@ -46,6 +50,7 @@ public class TabsFragment extends Fragment implements OnTabChangeListener {
             throw new ClassCastException(activity.toString()
                     + " must implement OnHeadlineSelectedListener");
         }
+		mContext = activity;
 		super.onAttach(activity);
 		 
 	}
@@ -160,14 +165,20 @@ public class TabsFragment extends Fragment implements OnTabChangeListener {
 	// }
 	// }
 	private void updateTabSetting(String tabId, int placeholder) {
-		FragmentManager fm = getFragmentManager();
-		if (fm.findFragmentByTag(tabId) == null) {
-			// gonna to manage actvitiy here
-			fm.beginTransaction()
-					.replace(placeholder, SettingsFragment.newInstance("Settings"),
-							tabId).commit();
-
-		}
+		Intent intent = new Intent(mContext, PreferencesActivity.class);
+		intent.putExtra(MainSlideFragment.FACEBOOK,
+				"I'm going for my daily goal");
+		
+		startActivityForResult(intent, Main.USER_PREFERENCES_REQUEST);
+		
+//		FragmentManager fm = getFragmentManager();
+//		if (fm.findFragmentByTag(tabId) == null) {
+//			// gonna to manage actvitiy here
+//			fm.beginTransaction()
+//					.replace(placeholder, SettingsFragment.newInstance("Settings"),
+//							tabId).commit();
+//
+//		}
 	}
 
 //	private void updateTab4(String tabId, int placeholder) {

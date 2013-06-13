@@ -84,4 +84,15 @@
         <item>Weekday</item>
         <item>Weekend</item>
     </string-array>
+    
+    <string-array name="send_interval">
+        <item>Weekday</item>
+        <item>Weekend</item>
+    </string-array>
+    <string-array name="send_interval_values">
+        <item>Weekday</item>
+        <item>Weekend</item>
+    </string-array>
+    
+    
 </resources>

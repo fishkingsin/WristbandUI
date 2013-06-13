@@ -33,7 +33,7 @@
         </LinearLayout>
 
         <ProgressBar
-            android:id="@+id/ProgressBar05"
+            android:id="@+id/steps_progressbar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_column="0"
@@ -117,7 +117,7 @@
         </LinearLayout>
 
         <ProgressBar
-            android:id="@+id/ProgressBar03"
+            android:id="@+id/calories_progressbar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_column="0"
@@ -203,7 +203,7 @@
         </LinearLayout>
 
         <ProgressBar
-            android:id="@+id/ProgressBar04"
+            android:id="@+id/distances_progressbar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="fill_parent"
             android:layout_column="0"

@@ -1,8 +1,11 @@
 <component name="libraryTable">
   <library name="dexedLibs">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/android-support-v13-a6c3ce05e4044767a1a52e125f4f8967.jar!/" />
-      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/junit-3.8.1-6b9a5e536679b9c478eff2ae2858209b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/android-viewpagerindicator-library-58d5985f4bd3d16dfdade2420c2fa936.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/graphview-8ee531f6ed7d146866b8c1c6c5bab1c4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/android-support-v4-d8dc9c54fcdcc4acdb7d85870e5a2700.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/android-support-v4-3de073d1fe32ef8030dd9110439174b0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/facebooksdk-6ba5ac367230eb9988af98d48bb1093c.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

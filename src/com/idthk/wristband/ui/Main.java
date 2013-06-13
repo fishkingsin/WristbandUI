@@ -36,12 +36,14 @@ public class Main extends FragmentActivity implements
 	static final int IMAGE_GALLERY_REQUEST = 0x60;
 	static final int TAKE_PHOTO_CODE = 0x70;
 	static final int SELECT_IMAGE_CODE = 0x90;
+	public static final int USER_PREFERENCES_REQUEST = 0x100;
 	static final int THRESHOLD = 5;
 	static final String TAG = "Main";
 
 	static final String FIRST_TIME = "firsttime";
 	public static final String TITLE = "title";
 	public static final String TARGET_ORIENTTION = "target_orientation";
+	
 
 	OrientationEventListener orientationListener;
 	OnShareButtonClickedListener myShareButtonClickedListener;
@@ -100,7 +102,10 @@ public class Main extends FragmentActivity implements
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		Log.v(TAG, "requestCode " + requestCode + " resultCode " + resultCode);
-
+		if(requestCode==USER_PREFERENCES_REQUEST)
+		{
+			
+		}
 	}
 
 	private void startLandscapeActivity(int orientation) {
@@ -216,4 +221,6 @@ public class Main extends FragmentActivity implements
 		if (orientationListener != null)
 			orientationListener.disable();
 	}
+
+	
 }

@@ -129,14 +129,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_selector_top"
-            idt:titleTextView="@string/Wake_up_Time"
+            idt:titleTextView="@string/weak_up_time"
             idt:valueTextView="@string/zero" />
 
         <com.idthk.wristband.ui.RelativeLayoutButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_selector_middle"
-            idt:titleTextView="@string/Weekday"
+            idt:titleTextView="@string/weekday"
             android:id="@+id/btn_user_sleep_weekday_profile"
             idt:valueTextView="@string/zero" />
 
@@ -145,7 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_selector_bottom"
-            idt:titleTextView="@string/Weekend"
+            idt:titleTextView="@string/weekend"
             idt:valueTextView="@string/zero" />
 
         <Space
@@ -156,7 +156,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Support"
+            android:text="@string/support"
             android:textAppearance="?android:attr/textAppearanceLarge" />
         
         <com.idthk.wristband.ui.RelativeLayoutButton
@@ -164,7 +164,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_selector"
-            idt:titleTextView="@string/Help"
+            idt:titleTextView="@string/help"
             idt:valueTextView="@string/right_arrow" />
         <Space
             android:layout_width="match_parent"
@@ -174,7 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_selector"
-            idt:titleTextView="@string/User_manual"
+            idt:titleTextView="@string/user_manual"
             idt:valueTextView="@string/right_arrow" />
 <Space
             android:layout_width="match_parent"

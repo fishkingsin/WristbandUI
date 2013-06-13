@@ -32,7 +32,7 @@ public class NumberPickerPreference extends DialogPreference implements NumberPi
 
             //Get XML attributes
             mDialogMessage = attr.getAttributeValue(NAMESPACE,"dialogMessage");
-            mDefault = attr.getAttributeIntValue(NAMESPACE,"defaultValue", 3);
+            mDefault = attr.getAttributeIntValue(NAMESPACE,"defaultValue", 10000);
             mMax = attr.getAttributeIntValue(NAMESPACE,"max", 200);
         }
 

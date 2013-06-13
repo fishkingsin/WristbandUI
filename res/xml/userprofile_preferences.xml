@@ -23,7 +23,7 @@
         <EditTextPreference
                 android:title="@string/pref_user_name"
                 android:summary="@string/pref_user_name_summary"
-                android:key="@string/key_user_name"
+                android:key="@string/pref_user_name"
                 android:defaultValue="User"/>
         <ListPreference
                 android:key="prefUserGender"
@@ -45,7 +45,7 @@
             android:key="prefUnit"
             android:title="@string/pref_unit_title" />
 
-        <com.idthk.wristband.ui.numberpickerpreference.TimePreference android:key="hora_inicio" android:title="TimePreference"/>   
+           
         <com.idthk.wristband.ui.numberpickerpreference.NumberPickerPreference
             android:key="prefHeight" android:title="@string/pref_user_height_title"
       android:defaultValue="178"/>

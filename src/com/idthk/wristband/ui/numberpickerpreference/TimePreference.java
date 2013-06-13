@@ -1,5 +1,7 @@
 package com.idthk.wristband.ui.numberpickerpreference;
 
+import java.text.DecimalFormat;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.preference.DialogPreference;
@@ -35,6 +37,7 @@ public class TimePreference extends DialogPreference {
     protected View onCreateDialogView() {
         picker=new TimePicker(getContext());
 
+        
         return(picker);
     }
 
@@ -56,7 +59,10 @@ public class TimePreference extends DialogPreference {
             lastMinute=picker.getCurrentMinute();
 
             String time=String.valueOf(lastHour)+":"+String.valueOf(lastMinute);
-
+            
+            String format = "%1$02d";
+            String summaryTime=String.format(format,lastHour)+":"+String.format(format,lastMinute);
+            setSummary(summaryTime);
             if (callChangeListener(time)) {
                 persistString(time);
             }
@@ -86,5 +92,15 @@ public class TimePreference extends DialogPreference {
 
         lastHour=getHour(time);
         lastMinute=getMinute(time);
+        
+        setSummary(lastHour, lastMinute);
+    }
+    
+    public void setSummary(int lastHour, int lastMinute)
+    {
+        
+        String format = "%1$02d";
+        String summaryTime=String.format(format,lastHour)+":"+String.format(format,lastMinute);
+        setSummary(summaryTime);
     }
 }

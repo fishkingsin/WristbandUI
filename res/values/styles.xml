@@ -44,4 +44,11 @@ limitations under the License.
     <item name="android:minHeight">50dip</item>
     <item name="android:maxHeight">50dip</item>
   </style>
+      <style name="DarkTheme" parent="android:Theme.Holo">
+        <item name="android:actionBarStyle">@style/DarkActionBar</item>
+    </style>
+    <style name="DarkActionBar" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+  
 </resources>

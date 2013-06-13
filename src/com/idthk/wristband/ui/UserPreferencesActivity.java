@@ -23,8 +23,7 @@ public class UserPreferencesActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_profile);
 
-		int targetPreferenceResource = getIntent().getIntExtra(
-				UserPrefsFragment.ARG_XML, R.xml.userprofile_preferences);
+		int targetPreferenceResource = R.xml.userprofile_preferences;
 
 		getFragmentManager()
 				.beginTransaction()
@@ -32,7 +31,9 @@ public class UserPreferencesActivity extends Activity {
 						UserPrefsFragment.create(targetPreferenceResource))
 				.commit();
 	}
-
+    @Override
+    public void onBackPressed() {
+	}
 	public static class UserPrefsFragment extends PreferenceFragment implements
 			SharedPreferences.OnSharedPreferenceChangeListener {
 		static final String ARG_XML = "xml";
@@ -56,10 +57,10 @@ public class UserPreferencesActivity extends Activity {
 			SharedPreferences sharedPreferences = PreferenceManager
 					.getDefaultSharedPreferences(this.getActivity());
 			sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-			if (targetPreferenceFile == R.xml.userprofile_preferences) {
-				Preference pref = findPreference(getString(R.string.key_user_name));
+			
+				Preference pref = findPreference(getString(R.string.pref_user_name));
 				pref.setSummary(sharedPreferences.getString(
-						getString(R.string.key_user_name),
+						getString(R.string.pref_user_name),
 						getString(R.string.default_user_name)));
 				pref = findPreference("prefUserGender");
 				pref.setSummary(sharedPreferences.getString("prefUserGender",
@@ -68,7 +69,7 @@ public class UserPreferencesActivity extends Activity {
 				pref = findPreference("prefUnit");
 				pref.setSummary(sharedPreferences.getString("prefUnit",
 						"Metric"));
-			}
+			
 		}
 
 		@Override
@@ -85,7 +86,6 @@ public class UserPreferencesActivity extends Activity {
 				SharedPreferences sharedPreferences, String key) {
 			// handle the preference change here'
 
-			if (targetPreferenceFile == R.xml.userprofile_preferences) {
 				Log.v(TAG, "key : " + sharedPreferences.toString() + " " + key
 						+ " " + sharedPreferences.getAll().toString());
 				Preference pref = findPreference(key);
@@ -98,7 +98,7 @@ public class UserPreferencesActivity extends Activity {
 					pref.setSummary(sharedPreferences.getString(key,
 							"Metric"));
 				}
-				else if (key.equals(getString(R.string.key_user_name))) {
+				else if (key.equals(getString(R.string.pref_user_name))) {
 					pref.setSummary(sharedPreferences.getString(key,
 							getString(R.string.default_user_name)));
 				} else if (key.equals("prefDateOfBirth")) {
@@ -109,7 +109,7 @@ public class UserPreferencesActivity extends Activity {
 				} else if (key.equals("prefWeight")) {
 					pref.setSummary(sharedPreferences.getInt(key, 50));
 				}
-			}
+			
 		}
 	}
 }
