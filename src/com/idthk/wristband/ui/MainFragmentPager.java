@@ -2,6 +2,8 @@ package com.idthk.wristband.ui;
 
 
 import com.idthk.wristband.ui.R;
+import com.viewpagerindicator.CirclePageIndicator;
+import com.viewpagerindicator.PageIndicator;
 //import com.idthk.wristband.ui.ScrollPagerMain.ScrollPagerMainCallback;
 
 import android.app.Activity;
@@ -23,6 +25,7 @@ public class MainFragmentPager extends Fragment {
 	private int mCurrentPage = 0;
 	private ViewPager mViewPager;
 	private MyFragmentPagerAdapter mMyFragmentPagerAdapter;
+	PageIndicator mIndicator;
 	
 	PagerChangedCallback mCallback;
 
@@ -52,7 +55,8 @@ public class MainFragmentPager extends Fragment {
             
            }
        });
-	 
+	   mIndicator = (CirclePageIndicator)v.findViewById(R.id.indicator);
+       mIndicator.setViewPager(mViewPager);
 	   return v;
 	 }
 	@Override 

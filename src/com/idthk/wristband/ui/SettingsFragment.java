@@ -3,15 +3,22 @@ package com.idthk.wristband.ui;
 //import java.util.ArrayList;
 //import java.util.List;
 
+import java.lang.reflect.Array;
+
 import com.idthk.wristband.ui.R;
 import com.idthk.wristband.ui.UserPreferencesActivity.UserPrefsFragment;
 //import com.idthk.wristband.ui.ScrollPagerMain.ScrollPagerMainCallback;
 
 //import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Context;
 //import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -51,6 +58,7 @@ public class SettingsFragment extends Fragment implements LoaderCallbacks<Void> 
 	private RelativeLayoutButton mUserSleepWeekendButton;
 	private RelativeLayoutButton mUserTargetDistanceButton;
 	private RelativeLayoutButton mUserTargetStepButton;
+	private Context mContext;
 	public static final SettingsFragment newInstance(String message) {
 		SettingsFragment f = new SettingsFragment();
 		Bundle bdl = new Bundle(1);
@@ -67,7 +75,7 @@ public class SettingsFragment extends Fragment implements LoaderCallbacks<Void> 
 		mRootView = inflater.inflate(R.layout.settings_fragment, container, false);
 		
 		Switch targetSwitch = (Switch) mRootView.findViewById(R.id.switch_target);
-		prefs = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
+		prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
  		boolean target = prefs.getBoolean(getString(R.string.key_target), true);
  		targetSwitch.setChecked(target);
 		targetSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -110,10 +118,24 @@ public class SettingsFragment extends Fragment implements LoaderCallbacks<Void> 
 		mUserTargetDistanceButton = ((RelativeLayoutButton) setButtonClickable(R.id.btn_user_target_distance_button));
 		mUserTargetStepButton = ((RelativeLayoutButton) setButtonClickable(R.id.btn_user_target_step_button));
 		
-		
+		publishSetting();
 		
 		
 		return mRootView;
+	}
+	private void publishSetting()
+	{
+		 SharedPreferences prefs = PreferenceManager
+    				.getDefaultSharedPreferences(mContext);
+		
+		mUserActivityTargetButton.setText(R.id.setting_tab_goal_textview,""+(prefs.getInt(getString(R.string.activity_target), 0)));
+		mUserSleepButton.setText(R.id.btn_user_sleep_profile,""+(prefs.getInt(getString(R.string.sleep_profile), 0)));
+		
+		mUserSleepWeekdayButton.setText(R.id.btn_user_sleep_weekday_profile,""+(prefs.getInt(getString(R.string.sleep_weekday_profile), 0)));
+		mUserSleepWeekendButton.setText(R.id.btn_user_sleep_weekend_profile,""+(prefs.getInt(getString(R.string.sleep_weekend_profile), 0)));
+		mUserTargetCaloriesButton.setText(R.id.btn_user_target_calories_button,""+(prefs.getInt(getString(R.string.target_calories), 0)));
+		mUserTargetDistanceButton.setText(R.id.btn_user_target_distance_button,""+(prefs.getInt(getString(R.string.target_distance), 0)));
+		mUserTargetStepButton.setText(R.id.btn_user_target_step_button,""+(prefs.getInt(getString(R.string.target_step), 0)));
 	}
 
 	public RelativeLayoutButton setButtonClickable(int id) {
@@ -131,6 +153,7 @@ public class SettingsFragment extends Fragment implements LoaderCallbacks<Void> 
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		prefs = activity.getSharedPreferences(getString(R.string.pref_name), 0);
+		mContext = activity;
 		// This makes sure that the container activity has implemented
 		// the callback interface. If not, it throws an exception
 	}
@@ -174,38 +197,60 @@ public class SettingsFragment extends Fragment implements LoaderCallbacks<Void> 
 		{
 			//load and diaply pdf 
 		}
+		else if (v.equals(mUserTargetCaloriesButton) )
+		{
+			
+		}
+		else if(v.equals(mUserTargetDistanceButton) ){
+			
+		}
+		else if(v.equals(mUserTargetStepButton)){
+			
+		}
 		else if (v.equals(mUserActivityTargetButton))
+		{	
+			createDialog(R.string.activity_target,
+					R.array.pref_user_activity_entries,
+					R.array.pref_user_activity_entryvalues,
+					mUserActivityTargetButton,
+					R.string.activity_target);
+		}
+		
+		else if (v.equals(mUserSleepButton) || v.equals(mUserSleepWeekdayButton) || v.equals(mUserSleepWeekendButton))
 		{
 			Intent intent = new Intent(getActivity(), UserPreferencesActivity.class);
 			
-			intent.putExtra(UserPrefsFragment.ARG_XML,R.xml.activity_preferences);
+			intent.putExtra(UserPrefsFragment.ARG_XML,R.xml.sleep_preferences);
 			getActivity().startActivityForResult(intent,ACTIVITY_REQUEST);
 		}
-		else if (v.equals(mUserSleepButton))
-		{
-			
-		}
-		else if (v.equals(mUserSleepWeekdayButton))
-		{
-			
-		}
-		else if (v.equals(mUserSleepWeekendButton))
-		{
-			
-		}
-		else if (v.equals(mUserTargetCaloriesButton))
-		{
-			
-		}
-		else if (v.equals(mUserTargetDistanceButton))
-		{
-			
-		}
-		else if (v.equals(mUserTargetStepButton))
-		{
-			
-		}
 		
 		
+	}
+
+	private void createDialog(int titleid,int itemsid , final int entryid , final RelativeLayoutButton button , final int key) {
+		// TODO Auto-generated method stub
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+	    builder.setTitle(titleid)//R.string.activity_target)
+	           .setItems(itemsid//R.array.pref_user_activity_entries
+	        		   , new DialogInterface.OnClickListener() {
+	               public void onClick(DialogInterface dialog, int which) {
+	               // The 'which' argument contains the index position
+	               // of the selected item
+	            	   Resources res = getResources();
+	            	   TypedArray items = res.obtainTypedArray(entryid);//R.array.pref_user_activity_entryvalues);
+	            	   
+//	            	   Log.v(TAG,"Select item : "+items.getString(which));
+	            	   button.setText(R.id.setting_tab_goal_textview,items.getString(which));
+//	            	   
+	            	   
+	            	   SharedPreferences prefs = PreferenceManager
+	           				.getDefaultSharedPreferences(mContext);
+	            	   SharedPreferences.Editor editor = prefs.edit();
+	       				editor.putInt(getString(key),0);//R.string.activity_target), 0);
+
+	       				// Commit the edits!
+	       				editor.commit();
+	           }
+	    }).show();
 	}
 }

@@ -144,4 +144,11 @@
     <string name="pref_user_activity_title">Activity Duration</string>
 	<string name="pref_user_activity_summary">set you target activity duration</string>
     <string name="pref_user_activity_dialogtitle">select an option</string>
+	<string name="activity_target">Activity Target</string>
+	<string name="sleep_profile">Slep Profile</string>
+	<string name="sleep_weekday_profile">Sleep Weekday Profile</string>
+	<string name="sleep_weekend_profile">Sleep Weekend Profile</string>
+	<string name="target_calories">Target Calories</string>
+	<string name="target_distance">Target Distances</string>
+	<string name="target_step">Target Steps</string>
 </resources>

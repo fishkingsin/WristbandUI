@@ -17,6 +17,8 @@ import com.jjoe64.graphview.BarGraphView;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.GraphView.GraphViewData;
+import com.viewpagerindicator.CirclePageIndicator;
+import com.viewpagerindicator.PageIndicator;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -38,7 +40,8 @@ public class StatisticFragmentPager extends Fragment {
 	private MyStatisticFragmentPagerAdapter mMyStatisticFragmentPagerAdapter;
 	
 	PagerChangedCallback mCallback;
-
+	PageIndicator mIndicator;
+	
     // Container Activity must implement this interface
     public interface PagerChangedCallback {
         public void onPagerChangedCallback(int page);
@@ -66,7 +69,9 @@ public class StatisticFragmentPager extends Fragment {
            }
        });
 	   
-	  
+	   mIndicator = (CirclePageIndicator)mRootView.findViewById(R.id.indicator);
+       mIndicator.setViewPager(mViewPager);
+       
 	 
 	   return mRootView;
 	 }

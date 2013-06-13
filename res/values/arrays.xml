@@ -63,15 +63,25 @@
         <item>FULL_SENSOR</item>
     </string-array>
     <string-array name="pref_user_activity_entries">
-        <item>30</item>
-        <item>60</item>
-        <item>90</item>
-        <item>120</item>
+        <item>30 minutes</item>
+        <item>60 minutes</item>
+        <item>90 minutes</item>
+        <item>120 minutes</item>
     </string-array>
     <string-array name="pref_user_activity_entryvalues">
         <item>30</item>
         <item>60</item>
         <item>90</item>
         <item>120</item>
+    </string-array>
+    
+    <string-array name="pref_user_sleep_profile_entries">
+        <item>Weekday</item>
+        <item>Weekend</item>
+    </string-array>
+    
+    <string-array name="pref_user_sleep_profile_entryvalues">
+        <item>Weekday</item>
+        <item>Weekend</item>
     </string-array>
 </resources>

@@ -19,17 +19,17 @@
 <PreferenceScreen
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/pref_user_profile" >
+    <PreferenceCategory android:title="@string/activity" >
         
         <ListPreference
-                android:key="prefUserGender"
+                android:key="perfActivityTarget"
                 android:title="@string/pref_user_activity_title"
                 android:summary="@string/pref_user_activity_summary"
                 android:entries="@array/pref_user_activity_entries"
                 android:entryValues="@array/pref_user_activity_entryvalues"
                 android:dialogTitle="@string/pref_user_activity_dialogtitle" 
                 android:defaultValue="Male"/>
-        
+        	
         
     </PreferenceCategory>
     

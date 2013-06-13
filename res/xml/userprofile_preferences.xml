@@ -36,13 +36,15 @@
         <org.bostonandroid.datepreference.DatePreference
       android:key="prefDateOfBirth" android:title="@string/pref_date_of_birth_title"
       android:defaultValue="1991.01.01" />
+
         <ListPreference
-                android:key="prefUnit"
-                android:title="@string/pref_unit_title"
-                android:entries="@array/pref_unit_entries"
-                android:entryValues="@array/pref_unit_entryvalues"
-                android:dialogTitle="@string/pref_unit_dialogtitle" 
-                android:defaultValue="Metric"/>
+            android:defaultValue="Metric"
+            android:dialogTitle="@string/pref_unit_dialogtitle"
+            android:entries="@array/pref_unit_entries"
+            android:entryValues="@array/pref_unit_entryvalues"
+            android:key="prefUnit"
+            android:title="@string/pref_unit_title" />
+
         <com.idthk.wristband.ui.numberpickerpreference.TimePreference android:key="hora_inicio" android:title="TimePreference"/>   
         <com.idthk.wristband.ui.numberpickerpreference.NumberPickerPreference
             android:key="prefHeight" android:title="@string/pref_user_height_title"

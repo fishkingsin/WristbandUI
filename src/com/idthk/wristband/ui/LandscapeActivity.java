@@ -104,4 +104,9 @@ public class LandscapeActivity extends Activity {
 	    super.onPause();
 	    orientationListener.disable();
 	}
+	@Override
+    public void onBackPressed() {
+		//override and disable back button
+		
+	}
 }
