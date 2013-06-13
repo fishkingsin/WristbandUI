@@ -23,7 +23,7 @@ import android.widget.TextView;
 //import android.widget.Toast;
 
 public class Main extends FragmentActivity implements
-		ScrollPagerMain.ScrollPagerMainCallback,
+//		ScrollPagerMain.ScrollPagerMainCallback,
 		MainFragmentPager.PagerChangedCallback,
 		StatisticFragmentPager.PagerChangedCallback,
 		MainSlideFragment.OnShareButtonClickedListener,
@@ -150,10 +150,10 @@ public class Main extends FragmentActivity implements
 		Log.v(TAG, "initUI");
 	}
 
-	public void onScrollPagerMainCallback() {
-		Log.v(TAG, "onScrollPagerMainCallback");
-
-	}
+//	public void onScrollPagerMainCallback() {
+//		Log.v(TAG, "onScrollPagerMainCallback");
+//
+//	}
 
 	@Override
 	public void onPagerChangedCallback(int page) {
