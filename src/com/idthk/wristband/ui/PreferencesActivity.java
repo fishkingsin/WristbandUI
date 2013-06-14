@@ -66,9 +66,9 @@ public class PreferencesActivity extends Activity {
 			boolean isWeekday = sharedPreferences.getBoolean(getString(R.string.pref_week_up_weekday),false);
 			boolean isWeekend = sharedPreferences.getBoolean(getString(R.string.pref_week_up_weekend),false);
 			
-			PreferenceScreen prefScreen = (PreferenceScreen) findPreference(getString(R.string.pref_week_up_time));
-			String summary=((isWeekday==true)?"Weekday":" ")+((isWeekend == false)?"Weekend":" ");
-			prefScreen.setSummary(summary);
+//			PreferenceScreen prefScreen = (PreferenceScreen) findPreference(getString(R.string.pref_week_up_time));
+//			String summary=((isWeekday==true)?"Weekday":" ")+((isWeekend == false)?"Weekend":" ");
+//			prefScreen.setSummary(summary);
 			
 		}
 
@@ -100,10 +100,10 @@ public class PreferencesActivity extends Activity {
 				boolean isWeekday = sharedPreferences.getBoolean(getString(R.string.pref_week_up_weekday),false);
 				boolean isWeekend = sharedPreferences.getBoolean(getString(R.string.pref_week_up_weekend),false);
 				
-				PreferenceScreen prefScreen = (PreferenceScreen) findPreference(getString(R.string.pref_week_up_time));
-				String summary=((isWeekday==true)?"Weekday":" ")+((isWeekend == false)?"Weekend":" ");
-//				Log.v(TAG,"isWeekday "+isWeekday + " isWeekend "+isWeekday + "summary "+summary);
-				prefScreen.setSummary(summary);
+//				PreferenceScreen prefScreen = (PreferenceScreen) findPreference(getString(R.string.pref_week_up_time));
+//				String summary=((isWeekday==true)?"Weekday":" ")+((isWeekend == false)?"Weekend":" ");
+////				Log.v(TAG,"isWeekday "+isWeekday + " isWeekend "+isWeekday + "summary "+summary);
+//				prefScreen.setSummary(summary);
 			}
 			
 //			else if(key.equals(getString(R.string.target_step)))
