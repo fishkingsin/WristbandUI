@@ -22,8 +22,9 @@
 
     <PreferenceCategory android:title="@string/pref_user_profile" >
         <Preference android:title="@string/profile_pic" 
-     	android:key="@string/pref_profile_pic" />
-        <EditTextPreference
+     	android:key="@string/pref_profile_pic" 
+     	 android:layout="@layout/image_preference_layout"/>
+     	         <EditTextPreference
             android:defaultValue="User"
             android:key="@string/pref_user_name"
             android:summary="@string/pref_user_name_summary"

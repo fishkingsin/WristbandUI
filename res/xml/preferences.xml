@@ -49,7 +49,7 @@
             android:title="@string/Daily_Activity_Target_mins" />
 
         <CheckBoxPreference
-            android:key="@string/pref_target"
+            android:key="@string/pref_toggle_target"
             android:title="@string/target" >
         </CheckBoxPreference>
 
