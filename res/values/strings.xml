@@ -96,8 +96,8 @@
     <string name="weight">Weight(kg)</string>
     <string name="message">message</string>
     <string name="ok">OK</string>
-    <string name="take_picture">take_picture</string>
-    <string name="choose_from_library">choose_from_library</string>
+    <string name="take_picture">Take picture</string>
+    <string name="choose_from_library">Choose from library</string>
     
     <string name="default_user_name">User</string>
     <string name="default_user_gender">Male</string>
@@ -117,9 +117,13 @@
     <string name="pref_unit_title">Unit</string>
     <string name="pref_user_name">User</string>
     <string name="pref_profile_pic">key_profile_pic</string>
+    <string name="profile_pic">Profile Picture</string>
     <string name="pref_last_sync_time">key_last_sync_time</string>
     <string name="pref_weekday">prefWeekday</string>
+    <string name="pref_weekday_wake">prefWeekdayWake</string>
     <string name="pref_weekend">prefWeekend</string>
+    <string name="pref_weekend_wake">prefWeekendWake</string>
+    
     <string name="default_last_sync_time">never</string>
     
     <string name="end">End</string>
@@ -136,8 +140,9 @@
     <string name="serial">Serial</string>
     <string name="unknown">Unknown</string>
     <string name="steps">Steps</string>
-    <string name="calories">Calories(kcal)</string>
-    <string name="distances">Distances(km)</string>
+    <string name="calories">Calories</string>
+    <string name="distances">Distances</string>
+    <string name="default_distance_unit">km</string>
     <string name="zero">0</string>
     <string name="sleep">Sleep</string>
     <string name="weak_up_time">Wake up time</string>
@@ -162,4 +167,13 @@
 	<string name="target">Target</string>
 	<string name="preferences">Preferences</string>
 	<string name="select_target_step">Select Target Step</string>
+	
+	<string name="are_you_sure">Are you sure?</string> 
+    <string name="unpair_wrist_band">Unpair Wristband</string> 
+    <string name="no" >No</string>
+    <string name="yes" >Yes</string>
+    <string name="pref_unpair">prefUnpair</string>
+    <string name="pairing">Pairing</string>
+    <string name="pref_in_bed_time">prefInBedTime</string>
+    
 </resources>

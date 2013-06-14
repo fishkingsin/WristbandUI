@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2008 The Android Open Source Project
+<!--
+     Copyright (C) 2008 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,28 +15,33 @@
      limitations under the License.
 -->
 
+
 <!-- This is a primitive example showing the different types of preferences available. -->
 
-<PreferenceScreen
-        xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <PreferenceCategory android:title="@string/pref_user_profile" >
+        <Preference android:title="@string/profile_pic" 
+     	android:key="@string/pref_profile_pic" />
         <EditTextPreference
-                android:title="@string/pref_user_name"
-                android:summary="@string/pref_user_name_summary"
-                android:key="@string/pref_user_name"
-                android:defaultValue="User"/>
+            android:defaultValue="User"
+            android:key="@string/pref_user_name"
+            android:summary="@string/pref_user_name_summary"
+            android:title="@string/pref_user_name" />
+
         <ListPreference
-                android:key="prefUserGender"
-                android:title="@string/pref_user_gender_title"
-                android:summary="@string/pref_user_gender_summary"
-                android:entries="@array/pref_user_gender_entries"
-                android:entryValues="@array/pref_user_gender_entryvalues"
-                android:dialogTitle="@string/pref_user_gender_dialogtitle" 
-                android:defaultValue="Male"/>
+            android:defaultValue="Male"
+            android:dialogTitle="@string/pref_user_gender_dialogtitle"
+            android:entries="@array/pref_user_gender_entries"
+            android:entryValues="@array/pref_user_gender_entryvalues"
+            android:key="prefUserGender"
+            android:summary="@string/pref_user_gender_summary"
+            android:title="@string/pref_user_gender_title" />
+
         <org.bostonandroid.datepreference.DatePreference
-      android:key="prefDateOfBirth" android:title="@string/pref_date_of_birth_title"
-      android:defaultValue="1991.01.01" />
+            android:defaultValue="1991.01.01"
+            android:key="prefDateOfBirth"
+            android:title="@string/pref_date_of_birth_title" />
 
         <ListPreference
             android:defaultValue="Metric"
@@ -45,15 +51,14 @@
             android:key="prefUnit"
             android:title="@string/pref_unit_title" />
 
-           
-        <com.idthk.wristband.ui.numberpickerpreference.NumberPickerPreference
-            android:key="prefHeight" android:title="@string/pref_user_height_title"
-      android:defaultValue="178"/>
-      <com.idthk.wristband.ui.numberpickerpreference.NumberPickerPreference
-            android:key="prefWeight" android:title="@string/pref_user_weight_title"
-      android:defaultValue="50"/>
-        
+        <com.idthk.wristband.ui.preference.NumberPickerPreference
+            android:defaultValue="178"
+            android:key="prefHeight"
+            android:title="@string/pref_user_height_title" />
+        <com.idthk.wristband.ui.preference.NumberPickerPreference
+            android:defaultValue="50"
+            android:key="prefWeight"
+            android:title="@string/pref_user_weight_title" />
     </PreferenceCategory>
-    
-</PreferenceScreen>
 
+</PreferenceScreen>

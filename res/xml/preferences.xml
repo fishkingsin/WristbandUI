@@ -29,6 +29,16 @@
                 android:targetPackage="com.idthk.wristband.ui" />
         </PreferenceScreen>
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pairing">
+    <com.idthk.wristband.ui.preference.MyDialogPreference
+         android:title="@string/unpair_wrist_band"
+         android:summary="Serial#:0000000000"
+        android:dialogMessage="@string/are_you_sure" 
+        android:dialogTitle="@string/unpair_wrist_band" 
+        android:negativeButtonText="@string/no" 
+        android:positiveButtonText="@string/yes" 
+        android:key="@string/pref_unpair"/>
+    </PreferenceCategory>
     <PreferenceCategory android:title="@string/activity" >
         <ListPreference
             android:defaultValue="30"
@@ -43,67 +53,81 @@
             android:title="@string/target" >
         </CheckBoxPreference>
 
-        <com.idthk.wristband.ui.numberpickerpreference.NumberPickerPreference
+        <com.idthk.wristband.ui.preference.NumberPickerPreference
             NAMESPACE:defaultValue="10000"
             NAMESPACE:max="99999"
             android:key="@string/pref_targetSteps"
             android:title="@string/steps" />
-        <com.idthk.wristband.ui.numberpickerpreference.NumberPickerPreference
+        <com.idthk.wristband.ui.preference.NumberPickerPreference
             NAMESPACE:defaultValue="7"
             NAMESPACE:max="99"
             android:key="@string/pref_targetDistances"
             android:title="@string/distances" />
-        <com.idthk.wristband.ui.numberpickerpreference.NumberPickerPreference
+        <com.idthk.wristband.ui.preference.NumberPickerPreference
             NAMESPACE:defaultValue="1000"
             NAMESPACE:max="99999"
             android:key="@string/pref_targetCalories"
             android:title="@string/calories" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/sleep">
-        <!-- <CheckBoxPreference
+    <PreferenceCategory android:title="@string/sleep" >
+
+        <!--
+             <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable_regular_messages"
             android:summary="Enable or disable regular messages"
-            android:title="Send regular messages" /> -->
+            android:title="Send regular messages" />
+        -->
 
-        
 
-        <PreferenceScreen
+        <!--
+             <PreferenceScreen
             xmlns:android="http://schemas.android.com/apk/res/android"
             
             android:key="@string/pref_week_up_time"
             android:title="@string/weak_up_time" >
-            <CheckBoxPreference
-                android:defaultValue="false"
-                android:key="@string/pref_week_up_weekday"
-                android:title="@string/weekday" />
-            <CheckBoxPreference
-                android:defaultValue="false"
-                android:key="@string/pref_week_up_weekend"
-                android:title="@string/weekend" />
-            
-        </PreferenceScreen>
-        <com.idthk.wristband.ui.numberpickerpreference.TimePreference 
+        -->
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/pref_week_up_weekday"
+            android:title="@string/weekday" />
+
+        <com.idthk.wristband.ui.preference.TimePreference
+            android:dependency="@string/pref_week_up_weekday"
             android:key="@string/pref_weekday"
-            android:title="@string/weekday"
-            />
-        <com.idthk.wristband.ui.numberpickerpreference.TimePreference
+            android:title="@string/weekday" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/pref_week_up_weekend"
+            android:title="@string/weekend" />
+
+        <!-- </PreferenceScreen> -->
+
+        <com.idthk.wristband.ui.preference.TimePreference
+            android:dependency="@string/pref_week_up_weekend"
             android:key="@string/pref_weekend"
-            android:title="@string/weekend"
-            />
+            android:title="@string/weekend" />
     </PreferenceCategory>
- 	<PreferenceCategory android:title="@string/support">
- 	    <PreferenceScreen android:title="@string/help" >
+    <PreferenceCategory android:title="@string/support" >
+        <PreferenceScreen android:title="@string/help" >
             <intent
                 android:action="android.intent.action.VIEW"
                 android:targetClass="com.idthk.wristband.ui.InstructionActivity"
                 android:targetPackage="com.idthk.wristband.ui" />
         </PreferenceScreen>
-         <PreferenceScreen android:title="@string/user_manual" >
+        <PreferenceScreen android:title="@string/user_manual" >
             <intent
                 android:action="android.intent.action.VIEW"
                 android:targetClass="com.idthk.wristband.ui.InstructionActivity"
                 android:targetPackage="com.idthk.wristband.ui" />
         </PreferenceScreen>
-     </PreferenceCategory>
+    </PreferenceCategory>
+ <PreferenceScreen android:title="@string/App_Version" 
+     android:key="@string/App_Version" 
+     android:summary="@string/unknown" />
+ <PreferenceScreen android:title="@string/Wristband_Version" 
+     android:key="@string/Wristband_Version" 
+     android:summary="@string/unknown" />
+     
 </PreferenceScreen>

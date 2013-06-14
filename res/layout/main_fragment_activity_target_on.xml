@@ -108,12 +108,22 @@
                 android:layout_height="36dp"
                 android:src="@drawable/page_1_004" />
 
-            <TextView
-                android:id="@+id/TextView21"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:paddingTop="3dp">
+                <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="3dp"
-                android:text="Calories(kcal)" />
+                android:text="@string/calories" />
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(kcal)" />
+                
+            </LinearLayout>
+
+            
         </LinearLayout>
 
         <ProgressBar
@@ -194,12 +204,36 @@
                 android:layout_height="36dp"
                 android:src="@drawable/page_1_005" />
 
-            <TextView
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingTop="3dp" >
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:text="@string/distances" />
+                <TextView
                 android:id="@+id/TextView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="3dp"
-                android:text="Distance(km)" />
+                
+                android:text="(" />
+                <TextView
+                android:id="@+id/distance_unit_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:text="@string/default_distance_unit" />
+                
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:text=")" />
+            </LinearLayout>
+
+            
         </LinearLayout>
 
         <ProgressBar
