@@ -1,6 +1,7 @@
-package com.idthk.wristband.ui.numberpickerpreference;
+package com.idthk.wristband.ui.preference;
 
 import java.text.DecimalFormat;
+import java.util.Calendar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -24,6 +25,19 @@ public class TimePreference extends DialogPreference {
         String[] pieces=time.split(":");
 
         return(Integer.parseInt(pieces[1]));
+    }
+
+    public static String getAmPm(String time) {
+    	Calendar datetime = Calendar.getInstance();
+        datetime.set(Calendar.HOUR_OF_DAY, getHour(time));
+        datetime.set(Calendar.MINUTE, getMinute(time));
+        String am_pm = "";
+
+        if (datetime.get(Calendar.AM_PM) == Calendar.AM)
+            am_pm = "AM";
+        else if (datetime.get(Calendar.AM_PM) == Calendar.PM)
+            am_pm = "PM";
+        return am_pm;
     }
 
     public TimePreference(Context ctxt, AttributeSet attrs) {
@@ -60,9 +74,7 @@ public class TimePreference extends DialogPreference {
 
             String time=String.valueOf(lastHour)+":"+String.valueOf(lastMinute);
             
-            String format = "%1$02d";
-            String summaryTime=String.format(format,lastHour)+":"+String.format(format,lastMinute);
-            setSummary(summaryTime);
+            setSummary(lastHour,lastMinute);
             if (callChangeListener(time)) {
                 persistString(time);
             }
@@ -99,8 +111,25 @@ public class TimePreference extends DialogPreference {
     public void setSummary(int lastHour, int lastMinute)
     {
         
-        String format = "%1$02d";
-        String summaryTime=String.format(format,lastHour)+":"+String.format(format,lastMinute);
-        setSummary(summaryTime);
+//        String format = "%1$02d";
+//        String summaryTime=String.format(format,lastHour)+":"+String.format(format,lastMinute);
+    	
+    	Calendar datetime = Calendar.getInstance();
+        datetime.set(Calendar.HOUR_OF_DAY, lastHour);
+        datetime.set(Calendar.MINUTE, lastMinute);
+        String am_pm = "";
+
+        if (datetime.get(Calendar.AM_PM) == Calendar.AM)
+            am_pm = "AM";
+        else if (datetime.get(Calendar.AM_PM) == Calendar.PM)
+            am_pm = "PM";
+
+        String strHrsToShow = (datetime.get(Calendar.HOUR) == 0) ?"12":Integer.toString( datetime.get(Calendar.HOUR) );
+        
+//        String format = "%1$02d";
+//        String summaryTime=String.format(format,lastHour)+":"+String.format(format,lastMinute);
+        setSummary(strHrsToShow+":"+datetime.get(Calendar.MINUTE)+" "+am_pm);
+    	
+//        setSummary(summaryTime);
     }
 }

@@ -1,4 +1,4 @@
-package com.idthk.wristband.ui.numberpickerpreference;
+package com.idthk.wristband.ui.preference;
 import android.content.Context;
 import android.content.DialogInterface;
 //import android.inputmethodservice.KeyboardView;
