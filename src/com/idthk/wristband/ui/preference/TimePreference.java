@@ -71,8 +71,8 @@ public class TimePreference extends DialogPreference {
         if (positiveResult) {
             lastHour=picker.getCurrentHour();
             lastMinute=picker.getCurrentMinute();
-
-            String time=String.valueOf(lastHour)+":"+String.valueOf(lastMinute);
+            String format = "%1$02d";
+            String time=String.format(format,lastHour)+":"+String.format(format,lastMinute);
             
             setSummary(lastHour,lastMinute);
             if (callChangeListener(time)) {
@@ -123,13 +123,20 @@ public class TimePreference extends DialogPreference {
             am_pm = "AM";
         else if (datetime.get(Calendar.AM_PM) == Calendar.PM)
             am_pm = "PM";
-
-        String strHrsToShow = (datetime.get(Calendar.HOUR) == 0) ?"12":Integer.toString( datetime.get(Calendar.HOUR) );
+      String format = "%1$02d";
+//      String summaryTime=String.format(format,lastHour)+":"+String.format(format,lastMinute);
+        String strHrsToShow = (datetime.get(Calendar.HOUR) == 0) ?"12":String.format(format, datetime.get(Calendar.HOUR) );
         
-//        String format = "%1$02d";
-//        String summaryTime=String.format(format,lastHour)+":"+String.format(format,lastMinute);
-        setSummary(strHrsToShow+":"+datetime.get(Calendar.MINUTE)+" "+am_pm);
+
+        setSummary(strHrsToShow+":"+String.format(format,datetime.get(Calendar.MINUTE))+" "+am_pm);
     	
 //        setSummary(summaryTime);
+        
+    }
+    @Override
+    public void setSummary (CharSequence summary)
+    {
+    	
+    	super.setSummary(summary);
     }
 }
