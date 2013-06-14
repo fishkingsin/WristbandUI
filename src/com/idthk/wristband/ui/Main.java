@@ -23,9 +23,9 @@ import android.widget.TextView;
 //import android.widget.Toast;
 
 public class Main extends FragmentActivity implements
-//		ScrollPagerMain.ScrollPagerMainCallback,
+
 		MainFragmentPager.PagerChangedCallback,
-		StatisticFragmentPager.PagerChangedCallback,
+		StatisticFragmentPager.StatisticPagerChangedCallback,
 		MainSlideFragment.OnShareButtonClickedListener,
 		TabsFragment.OnFragmentTabbedListener {
 	static final int TO_INSTRUCTION_REQUEST = 0x10;
@@ -220,6 +220,22 @@ public class Main extends FragmentActivity implements
 		super.onPause();
 		if (orientationListener != null)
 			orientationListener.disable();
+	}
+
+	@Override
+	public void onStatisticPagerChangedCallback(int page) {
+		// TODO Auto-generated method stub
+		if (page == 0 ) {
+			((TextView) findViewById(R.id.titlebar_textview)).setText("Activity Level");
+			((Button) findViewById(R.id.btn_settings_done))
+					.setVisibility(View.GONE);
+		}
+		
+		else if (page == 1 ) {
+			((TextView) findViewById(R.id.titlebar_textview)).setText("Sleep Level");
+			((Button) findViewById(R.id.btn_settings_done))
+					.setVisibility(View.GONE);
+		}
 	}
 
 	
