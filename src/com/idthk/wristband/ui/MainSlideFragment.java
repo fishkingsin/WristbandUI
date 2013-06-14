@@ -17,6 +17,7 @@
 package com.idthk.wristband.ui;
 
 import java.io.File;
+import java.util.Calendar;
 //import java.lang.reflect.Array;
 //import java.util.ArrayList;
 //import java.util.List;
@@ -304,7 +305,29 @@ public class MainSlideFragment extends Fragment implements
 			goalDistancesTv.setText("" + targetDistances);
 
 		} else {
-
+			Calendar datetime = Calendar.getInstance();
+			
+			int weekday = datetime.get(Calendar.WEEK_OF_MONTH);
+			
+			String startSleep,endSleep;
+			int inbedTime = prefs.getInt(getString(R.string.pref_in_bed_time), 8);
+			
+			if(weekday==5 || weekday==6)
+			{
+				startSleep = prefs.getString(getString(R.string.pref_weekend), "00:00");
+				endSleep = prefs.getString(getString(R.string.pref_weekend_wake), "08:00");
+				
+			}
+			else
+			{
+				startSleep = prefs.getString(getString(R.string.pref_weekday), "00:00");
+				endSleep = prefs.getString(getString(R.string.pref_weekend_wake), "08:00");
+			}
+			
+			 ((TextView) mRootView.findViewById(R.id.sleep_start_textfield)).setText(startSleep);
+			 ((TextView) mRootView.findViewById(R.id.sleep_end_textfield)).setText(endSleep);
+			 ((TextView) mRootView.findViewById(R.id.sleep_duration_textfield)).setText(String.valueOf(inbedTime));
+//			 
 		}
 
 		lastSyncTimeTv.setText(prefs.getString(
