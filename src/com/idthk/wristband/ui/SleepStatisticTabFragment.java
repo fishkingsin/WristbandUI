@@ -129,7 +129,7 @@ public class SleepStatisticTabFragment extends Fragment implements OnTabChangeLi
 			//gonna to manage actvitiy here
 		
 			fm.beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-					.replace(placeholder, SleepStatisticFragment.newInstance(tabId), tabId)
+					.replace(placeholder, StatisticFragment.newInstance(tabId), tabId)
 					.commit();
 		}
 		else
