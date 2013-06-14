@@ -116,54 +116,27 @@ public class TabsFragment extends Fragment implements OnTabChangeListener {
 	public void onTabChanged(String tabId) {
 		
 		Log.d(TAG, "onTabChanged(): tabId=" + tabId);
-		// if (TAB_WORDS.equals(tabId)) {
-		// updateTab(tabId, R.id.tab_1);
-		// mCurrentTab = 0;
-		// return;
-		// }
-		// else if (TAB_NUMBERS.equals(tabId)) {
-		// updateTab(tabId, R.id.tab_2);
-		// mCurrentTab = 1;
-		// return;
-		// }
+
 		if (TAB_SCROLL.equals(tabId)) {
 			updateTabMain(tabId, R.id.tab_1);
-//			mPreviousTab = mCurrentTab;
-			
 			mCurrentTab = 0;
 			return;
 		}
 		if (TAB_FRAGMENT_TAB.equals(tabId)) {
 			updateTabFragTab(tabId, R.id.tab_2);
-//			mPreviousTab = mCurrentTab;
 			mCurrentTab = 1;
 			return;
 		}
 		if (TAB_SETTINGS.equals(tabId)) {
 			mCallback.onTabbed(tabId);
 			updateTabSetting(tabId, R.id.tab_3);
-//			mPreviousTab = mCurrentTab;
 			mCurrentTab = 2;
 			return;
 		}
-		// if (TAB_PAGER.equals(tabId)) {
-		// updateTab4(tabId, R.id.tab_2);
-		// mCurrentTab = 1;
-		// return;
-		// }
 		
 		
 	}
 
-	// private void updateTab(String tabId, int placeholder) {
-	// FragmentManager fm = getFragmentManager();
-	// if (fm.findFragmentByTag(tabId) == null) {
-	// //gonna to manage actvitiy here
-	// fm.beginTransaction()
-	// .replace(placeholder, new MyListFragment(tabId), tabId)
-	// .commit();
-	// }
-	// }
 	private void updateTabSetting(String tabId, int placeholder) {
 		Intent intent = new Intent(mContext, PreferencesActivity.class);
 		intent.putExtra(MainSlideFragment.FACEBOOK,
@@ -181,14 +154,6 @@ public class TabsFragment extends Fragment implements OnTabChangeListener {
 //		}
 	}
 
-//	private void updateTab4(String tabId, int placeholder) {
-//		FragmentManager fm = getFragmentManager();
-//		if (fm.findFragmentByTag(tabId) == null) {
-//			// gonna to manage actvitiy here
-//			FragmentPager pager = new FragmentPager();
-//			fm.beginTransaction().replace(placeholder, pager, tabId).commit();
-//		}
-//	}
 
 	private void updateTabFragTab(String tabId, int placeholder) {
 		FragmentManager fm = getFragmentManager();
@@ -201,7 +166,7 @@ public class TabsFragment extends Fragment implements OnTabChangeListener {
 		else
 		{
 			StatisticFragmentPager fragment = (StatisticFragmentPager)fm.findFragmentByTag(tabId);
-			mCallback.onTabbed((fragment.getCurrentPage()==0)?"Activity":"Sleep");
+			mCallback.onTabbed((fragment.getCurrentPage()==0)?"Activity Level":"Sleep Level");
 		}
 	}
 
