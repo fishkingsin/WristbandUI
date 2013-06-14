@@ -38,7 +38,7 @@ public class RoundBarGraphView extends BarGraphView {
 			if (style.getValueDependentColor() != null) {
 				paint.setColor(style.getValueDependentColor().get(values[i]));
 			}
-			canvas.drawRoundRect(new RectF((i * colwidth) + horstart, (border - y) + graphheight, ((i * colwidth) + horstart) + (colwidth - 1), graphheight + border - 1), (int)(colwidth*0.5), (int)(colwidth*0.5), paint);
+			canvas.drawRoundRect(new RectF((i * colwidth) + horstart, (border - y) + graphheight, ((i * colwidth) + horstart) + (colwidth - 1), graphheight + border - 1), (int)(colwidth*0.25), (int)(colwidth*0.25), paint);
 		}
 	}
 }
