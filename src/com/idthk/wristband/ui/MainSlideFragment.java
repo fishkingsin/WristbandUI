@@ -17,6 +17,7 @@
 package com.idthk.wristband.ui;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 //import java.lang.reflect.Array;
 //import java.util.ArrayList;
@@ -30,14 +31,17 @@ import java.util.Random;
 
 import com.idthk.wristband.graphview.RoundBarGraphView;
 import com.idthk.wristband.ui.R;
+import com.idthk.wristband.ui.preference.TimePreference;
 //import com.idthk.wristband.ui.ScrollPagerMain.ScrollPagerMainCallback;
 //import com.tomoki.iwai.ScrollPagerHorizontal;
 //import com.tomoki.iwai.ScrollPagerVertical;
 
 import android.support.v4.app.Fragment;
+import android.text.format.DateFormat;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 //import android.graphics.BitmapFactory;
 //import android.graphics.Color;
 //import android.graphics.Rect;
@@ -49,6 +53,7 @@ import android.graphics.Bitmap;
 //import android.app.Fragment;
 import android.os.Bundle;
 import android.preference.Preference;
+import android.preference.DialogPreference;
 //import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
@@ -67,6 +72,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.Button;
+import android.widget.TimePicker;
+
 import com.jjoe64.graphview.BarGraphView;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
@@ -91,7 +98,7 @@ public class MainSlideFragment extends Fragment implements
 	 * The argument key for the page number this fragment represents.
 	 */
 	public static final String ARG_PAGE = "page";
-	public static final String TAG = "ScreenSlidePageFragment";
+	public static final String TAG = "MainSlideFragment";
 	ViewGroup mRootView;
 	OnShareButtonClickedListener mCallback;
 	CustomProgressBar m_regularProgressBar;
@@ -108,6 +115,13 @@ public class MainSlideFragment extends Fragment implements
 	TextView userNameTv;
 	GraphView mGraphView;
 
+	TextView target_steps_indicated_textview;
+	TextView target_calories_indicated_textview;
+	TextView target_distances_indicated_textview;
+	
+	TextView steps_indicated_textview;
+	TextView calories_indicated_textview;
+	TextView distances_indicated_textview;
 	public interface OnShareButtonClickedListener {
 		public void onShareButtonClicked(String s);
 	}
@@ -118,6 +132,9 @@ public class MainSlideFragment extends Fragment implements
 	 */
 	private int mPageNumber;
 	private TextView lastSyncTimeTv;
+	static private int targetSteps = 1;
+	static private int targetCalories = 1;
+	static private int targetDistances = 1;
 
 	/**
 	 * Factory method for this fragment class. Constructs a new fragment for the
@@ -193,6 +210,14 @@ public class MainSlideFragment extends Fragment implements
 			m_stepsProgressBar.setProgress(0);
 			m_caloriesProgressBar.setProgress(0);
 			m_distancesProgressBar.setProgress(0);
+			
+			target_steps_indicated_textview = ((TextView) mRootView.findViewById(R.id.target_steps_indicated_textview));
+			target_calories_indicated_textview = ((TextView) mRootView.findViewById(R.id.target_calories_indicated_textview));
+			target_distances_indicated_textview = ((TextView) mRootView.findViewById(R.id.target_distances_indicated_textview));
+			
+			steps_indicated_textview = ((TextView) mRootView.findViewById(R.id.steps_indicated_textview));
+			calories_indicated_textview = ((TextView) mRootView.findViewById(R.id.calories_indicated_textview));
+			distances_indicated_textview = ((TextView) mRootView.findViewById(R.id.distances_indicated_textview));
 
 			publishSettings(sharedPreferences);
 
@@ -230,7 +255,14 @@ public class MainSlideFragment extends Fragment implements
 				}
 			});
 
-			// new UpdateBarTask().execute();
+			String s = "2012-05-08";
+			Calendar cal = Calendar.getInstance();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			((TextView) mRootView.findViewById(R.id.today_text_view))
+					.setText(sdf.format(cal.getTime()));
+
+			 new UpdateBarTask().execute();
 		} else {
 			mRootView = (ViewGroup) inflater.inflate(
 					R.layout.main_scrollview_sleep, container, false);
@@ -272,8 +304,8 @@ public class MainSlideFragment extends Fragment implements
 	private void publishSettings(SharedPreferences prefs) {
 		// TODO Auto-generated method stub
 		if (mPageNumber == 0) {
-			boolean target = prefs.getBoolean(getString(R.string.pref_target),
-					true);
+			boolean target = prefs.getBoolean(
+					getString(R.string.pref_toggle_target), true);
 			targetView = ((View) mRootView.findViewById(R.id.target_layout_on));
 			nonTargetView = ((View) mRootView
 					.findViewById(R.id.target_layout_off));
@@ -306,28 +338,48 @@ public class MainSlideFragment extends Fragment implements
 
 		} else {
 			Calendar datetime = Calendar.getInstance();
-			
+
 			int weekday = datetime.get(Calendar.WEEK_OF_MONTH);
-			
-			String startSleep,endSleep;
-			int inbedTime = prefs.getInt(getString(R.string.pref_in_bed_time), 8);
-			
-			if(weekday==5 || weekday==6)
-			{
-				startSleep = prefs.getString(getString(R.string.pref_weekend), "00:00");
-				endSleep = prefs.getString(getString(R.string.pref_weekend_wake), "08:00");
-				
+
+			String startSleep, endSleep;
+			int inbedTime = prefs.getInt(getString(R.string.pref_in_bed_time),
+					8);
+
+			String format = "%1$02d";
+
+			if (weekday == 5 || weekday == 6) {
+				startSleep = prefs.getString(getString(R.string.pref_weekend),
+						"00:00");
+				startSleep = String.format(format,
+						TimePreference.getHour(startSleep))
+						+ ":"
+						+ String.format(format,
+								TimePreference.getMinute(startSleep))
+						+ TimePreference.getAmPm(startSleep);
+				endSleep = prefs.getString(
+						getString(R.string.pref_weekend_wake), "08:00AM");
+
+			} else {
+				startSleep = prefs.getString(getString(R.string.pref_weekday),
+						"00:00");
+				startSleep = String.format(format,
+						TimePreference.getHour(startSleep))
+						+ ":"
+						+ String.format(format,
+								TimePreference.getMinute(startSleep))
+						+ TimePreference.getAmPm(startSleep);
+				endSleep = prefs.getString(
+						getString(R.string.pref_weekend_wake), "08:00AM");
 			}
-			else
-			{
-				startSleep = prefs.getString(getString(R.string.pref_weekday), "00:00");
-				endSleep = prefs.getString(getString(R.string.pref_weekend_wake), "08:00");
-			}
+
+			((TextView) mRootView.findViewById(R.id.sleep_start_textfield))
+					.setText(startSleep);
+			((TextView) mRootView.findViewById(R.id.sleep_end_textfield))
+					.setText(endSleep);
+			((TextView) mRootView.findViewById(R.id.sleep_duration_textfield))
+					.setText(String.valueOf(inbedTime));
 			
-			 ((TextView) mRootView.findViewById(R.id.sleep_start_textfield)).setText(startSleep);
-			 ((TextView) mRootView.findViewById(R.id.sleep_end_textfield)).setText(endSleep);
-			 ((TextView) mRootView.findViewById(R.id.sleep_duration_textfield)).setText(String.valueOf(inbedTime));
-//			 
+			
 		}
 
 		lastSyncTimeTv.setText(prefs.getString(
@@ -394,28 +446,25 @@ public class MainSlideFragment extends Fragment implements
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		if (mPageNumber == 0) {
-			if (key.equals(getString(R.string.pref_target))) {
+			if (key.equals(getString(R.string.pref_toggle_target))) {
 				boolean target = sharedPreferences.getBoolean(key, false);
 				targetView.setVisibility((target) ? View.VISIBLE : View.GONE);
 
 				nonTargetView
 						.setVisibility((target) ? View.GONE : View.VISIBLE);
-			} else if (key.equals(getString(R.string.pref_target))) {
-				int targetSteps = sharedPreferences.getInt(
+			} else if (key.equals(getString(R.string.pref_targetSteps))) {
+				targetSteps = sharedPreferences.getInt(
 						getString(R.string.pref_targetSteps), 0);
 				goalStepsTv.setText(Integer.toString(targetSteps));
-			} 
-			else if (key.equals(getString(R.string.pref_targetCalories))) {
-				int targetCalories = sharedPreferences.getInt(
+			} else if (key.equals(getString(R.string.pref_targetCalories))) {
+				targetCalories = sharedPreferences.getInt(
 						getString(R.string.pref_targetCalories), 0);
 				goalCaloriesTv.setText(Integer.toString(targetCalories));
-			} 
-			else if (key.equals(getString(R.string.pref_targetDistances))) {
-				int targetDistances = sharedPreferences.getInt(
+			} else if (key.equals(getString(R.string.pref_targetDistances))) {
+				targetDistances = sharedPreferences.getInt(
 						getString(R.string.pref_targetDistances), 0);
 				goalDistancesTv.setText(Integer.toString(targetDistances));
-			}
-			else if (key.equals(getString(R.string.pref_targetActivity))) {
+			} else if (key.equals(getString(R.string.pref_targetActivity))) {
 				int targetActivity = Integer.valueOf(sharedPreferences
 						.getString(getString(R.string.pref_targetActivity),
 								"30"));
@@ -430,51 +479,58 @@ public class MainSlideFragment extends Fragment implements
 						getString(R.string.pref_user_name),
 						getString(R.string.default_user_name)));
 			} else {
-				Log.v(TAG, "key :" + key);
+				// Log.v(TAG, "key :" + key);
 			}
 		} else if (mPageNumber == 1) {
-			
-			if (key.equals(getString(R.string.pref_weekday)))
-			{
-				
-			}
-			else if (key.equals(getString(R.string.pref_weekend))) 
-			{
-				
+
+			if (key.equals(getString(R.string.pref_weekday))) {
+
+			} else if (key.equals(getString(R.string.pref_weekend))) {
+
 			}
 
 		}
 	}
 
-	// private class UpdateBarTask extends AsyncTask<Void, Integer, Void> {
-	//
-	// @Override
-	// protected Void doInBackground(Void... params) {
-	// int max = 104;
-	// for (int i = 0; i <= max; i++) {
-	// try {
-	// // update every second
-	// Thread.sleep(100);
-	// if (i == max - 1) {
-	// i = 0;
-	// }
-	// //
-	//
-	// } catch (InterruptedException e) {
-	//
-	// }
-	//
-	// publishProgress(i);
-	// }
-	//
-	// return null;
-	// }
-	//
-	// @Override
-	// protected void onProgressUpdate(Integer... values) {
-	//
-	// m_regularProgressBar.setProgressInMins(values[0]);
-	// // m_regularProgressBar.setProgress(values[0]);
-	// }
-	// }
+	private class UpdateBarTask extends AsyncTask<Void, Integer, Void> {
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			int max = 104;
+			for (int i = 0; i <= max; i++) {
+				try {
+					// update every second
+					Thread.sleep(100);
+					if (i == max - 1) {
+						i = 0;
+					}
+					//
+
+				} catch (InterruptedException e) {
+
+				}
+
+				publishProgress(i);
+			}
+
+			return null;
+		}
+
+		@Override
+		protected void onProgressUpdate(Integer... values) {
+
+			m_regularProgressBar.setProgressInMins(values[0]);
+			m_stepsProgressBar.setProgress(values[0]);
+			m_caloriesProgressBar.setProgress(values[0]);
+			m_distancesProgressBar.setProgress(values[0]);
+			
+			target_steps_indicated_textview.setText(String.valueOf(values[0]));
+			target_calories_indicated_textview.setText(String.valueOf(values[0]));
+			target_distances_indicated_textview.setText(String.valueOf(values[0]));
+			
+			steps_indicated_textview.setText(String.valueOf(values[0]));
+			calories_indicated_textview.setText(String.valueOf(values[0]));
+			distances_indicated_textview.setText(String.valueOf(values[0]));
+		}
+	}
 }
