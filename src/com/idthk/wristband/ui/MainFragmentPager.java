@@ -55,8 +55,8 @@ public class MainFragmentPager extends Fragment {
             
            }
        });
-	   mIndicator = (CirclePageIndicator)v.findViewById(R.id.indicator);
-       mIndicator.setViewPager(mViewPager);
+//	   mIndicator = (CirclePageIndicator)v.findViewById(R.id.indicator);
+//       mIndicator.setViewPager(mViewPager);
 	   return v;
 	 }
 	@Override 
